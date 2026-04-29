@@ -24,6 +24,7 @@ export type ProjectItem = {
   technologies: TechItem[];
   link: string;
   projectPage: string;
+  isworking: true | false;
 };
 
 export const projects: ProjectItem[] = [
@@ -42,6 +43,7 @@ export const projects: ProjectItem[] = [
     ],
     link: "https://credbind.vercel.app/",
     projectPage: "/projects/credbind",
+    isworking: false,
   },
   {
     title: "Playground",
@@ -56,5 +58,6 @@ export const projects: ProjectItem[] = [
     ],
     link: "#",
     projectPage: "/projects/playground",
+    isworking: true,
   },
 ];

@@ -6,7 +6,6 @@ import { NavItemGitHub } from "@/components/assets/githubstars";
 const Links = [
   { title: "Home", href: "/" },
   { title: "Blogs", href: "/blogs" },
-  { title: "Contact", href: "/contact" },
 ];
 
 type NavbarProps = {

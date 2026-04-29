@@ -1,7 +1,7 @@
 export const tools = [
     {
         name: "Requestly",
-        description: "Helps me debug APIs and tweak network requests without hassle.",
+        description: "Helps me debug APIs and better than Postman as it is lightweight and opensource.",
         link: "https://requestly.com/",
     },
     {

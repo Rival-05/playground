@@ -36,10 +36,7 @@ export function GitHubContributions({
       blockMargin={3}
       blockRadius={2}
     >
-      <ContributionGraphCalendar
-        className="no-scrollbar px-2"
-        title="GitHub Contributions"
-      >
+      <ContributionGraphCalendar className="no-scrollbar px-2">
         {({ activity, dayIndex, weekIndex }) => (
           <Tooltip>
             <TooltipTrigger asChild>

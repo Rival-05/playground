@@ -13,16 +13,16 @@ import Link from "next/link";
 export default function Projects() {
   return (
     <section className="w-full space-y-8 py-8 md:py-10">
-      <h2 className="text-xl font-medium tracking-tight text-foreground ">
+      <h2 className="text-xl font-medium tracking-tight text-foreground">
         Projects
       </h2>
 
       <div className="space-y-4">
         {projects.map((project, index) => (
           <div key={project.title} className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div className="flex flex-wrap items-center">
-                <h2 className=" text-base font-medium text-muted-foreground hover:underline-offset-4 hover:underline cursor-pointer hover:text-foreground/80">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex gap-2 flex-wrap items-center">
+                <h2 className="text-base font-medium text-muted-foreground link-underline cursor-pointer hover:text-foreground">
                   <Link
                     href={project.link}
                     target="_blank"
@@ -34,12 +34,36 @@ export default function Projects() {
                   </Link>
                 </h2>
                 <div
+                  className={`flex items-center gap-1 rounded-md px-2 py-1 text-xs text-foreground/90 tracking-wide ${
+                    project.isworking ? " bg-green-500/10" : " bg-red-500/10 "
+                  }`}
+                >
+                  {project.isworking ? (
+                    <>
+                      <div className="relative flex size-1.5">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
+                        <span className="relative inline-flex size-1.5 rounded-full bg-green-500" />
+                      </div>
+                      <span>Live</span>
+                    </>
+                  ) : (
+                    <>
+                      <div className="relative flex size-1.5">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75" />
+                        <span className="relative inline-flex size-1.5 rounded-full bg-red-500" />
+                      </div>
+                      <span>Building</span>
+                    </>
+                  )}
+                </div>
+                <div
                   data-orientation="vertical"
                   role="none"
                   data-slot="separator"
-                  className="shrink-0 bg-muted-foreground data-horizontal:h-px data-horizontal:w-full data-vertical:w-px mx-2 data-vertical:h-4 data-vertical:self-center"
-                ></div>
-                <div className="flex flex-wrap items-center gap-2">
+                  className="shrink-0 bg-muted-foreground data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:h-4 data-vertical:self-center"
+                />
+
+                <div className="flex flex-wrap items-center gap-1">
                   {project.technologies.map((item) => (
                     <div key={item.name} className="flex items-center gap-1">
                       <Tooltip>
@@ -62,10 +86,11 @@ export default function Projects() {
                   ))}
                 </div>
               </div>
+
               <Link href={project.projectPage}>
                 <Button
                   variant="ghost"
-                  className="flex item-center gap-1 group cursor-pointer text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-1 group cursor-pointer text-muted-foreground hover:text-foreground"
                 >
                   <span>Details</span>
                   <Arrowright className="group-hover:translate-x-1 transition-transform duration-300" />
@@ -73,7 +98,7 @@ export default function Projects() {
               </Link>
             </div>
 
-            <p className="text-sm  text-muted-foreground md:text-[15px]">
+            <p className="text-sm text-muted-foreground md:text-[15px]">
               {project.overview}
             </p>
 
