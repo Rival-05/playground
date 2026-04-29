@@ -49,7 +49,7 @@ export function GitHubStars({
         </Button>
       </TooltipTrigger>
 
-      <TooltipContent className="font-sans">
+      <TooltipContent className="text-sm">
         {new Intl.NumberFormat(locales).format(stargazersCount)} stars
       </TooltipContent>
     </Tooltip>

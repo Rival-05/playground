@@ -10,9 +10,13 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
 export const metadata: Metadata = {
-  title: "rajat.tripathi | portfolio",
+  title: "Playground",
   description: "Sleek portfolio designed and built by Rajat Tripathi",
+  icons: {
+    icon: [{ url: "/shinchan.png", sizes: "16x16", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({

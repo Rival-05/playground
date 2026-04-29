@@ -21,7 +21,7 @@ export default function Tools() {
             />
             <div className="flex flex-wrap items-baseline gap-3 text-muted-foreground hover:text-primary">
               <span className="text-base font-semibold">{tool.name}</span>
-              <p className="text-sm leading-relaxed tracking-wide m-0">
+              <p className="text-sm leading-relaxed tracking-wide">
                 {tool.description}
               </p>
             </div>

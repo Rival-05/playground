@@ -153,6 +153,9 @@ body {
   html {
     @apply font-sans;
   }
+  ::selection {
+    @apply bg-primary text-primary;
+  }
 }
 
 @utility link-underline {

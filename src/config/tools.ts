@@ -6,27 +6,27 @@ export const tools = [
     },
     {
         name: "ChatGPT",
-        description: "My go-to for brainstorming, debugging, and learning faster.",
+        description: "My go-to for debugging, and learning faster.",
         link: "https://chat.openai.com/",
     },
     {
         name: "shadcn/ui",
-        description: "Clean components that help me make websites look polished quickly.",
+        description: "Provides clean components for my websites.",
         link: "https://ui.shadcn.com/",
     },
     {
         name: "Godly",
-        description: "I check it whenever I need fresh website design ideas.",
+        description: "For new fresh website design ideas.",
         link: "https://godly.website/",
     },
     {
         name: "Recordly",
-        description: "A solid open-source tool for screen recording and editing with great built-in effects.",
+        description: "Open-source tool for screen recording and editing with built-in effects.",
         link: "https://recordly.dev/",
     },
     {
         name: "Audio Haptics",
-        description: "I use it to add small sounds that make interactions feel more alive.",
+        description: "Provides sound effects for micro-interactions.",
         link: "https://audio.raphaelsalaja.com/",
     },
     {
