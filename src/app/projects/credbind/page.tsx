@@ -1,6 +1,6 @@
 import { projects } from "@/config/projects";
 import { Container } from "@/components/common/Container";
-import ProjectDisplay from "@/components/common/ProjectDisplay";
+import ProjectDisplay from "@/components/projects/ProjectDisplay";
 
 export default function Page() {
   const path = "/projects/credbind";

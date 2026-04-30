@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="w-full tracking-wide space-y-5 py-8 text-base leading-8 md:py-10">
+    <section className="w-full space-y-5 py-8 text-base leading-8 md:py-10">
       <div className="flex items-center gap-3">
         <Image
           src="/shinchan.svg"

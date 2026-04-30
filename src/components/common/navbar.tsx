@@ -1,11 +1,11 @@
 import ThemeToggle from "@/components/ui/Toggle";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { NavItemGitHub } from "@/components/assets/githubstars";
+import { NavItemGitHub } from "@/components/landing/githubstars";
 
 const Links = [
   { title: "Home", href: "/" },
-  { title: "Blogs", href: "/blogs" },
+  { title: "Blog", href: "/blog" },
 ];
 
 type NavbarProps = {

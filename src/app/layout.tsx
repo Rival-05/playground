@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import Providers from "@/components/common/Providers";
+import Providers from "@/components/assets/Providers";
 import Navbar from "@/components/common/navbar";
 import { Container } from "@/components/common/Container";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -35,7 +35,7 @@ export default function RootLayout({
           <TooltipProvider>
             <Navbar />
             <Container>
-              <main className="pt-10">{children}</main>
+              <main className="w-full pt-10">{children}</main>
             </Container>
           </TooltipProvider>
         </Providers>

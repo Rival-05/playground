@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { projects } from "@/config/projects";
 import { Container } from "@/components/common/Container";
-import ProjectDisplay from "@/components/common/ProjectDisplay";
+import ProjectDisplay from "@/components/projects/ProjectDisplay";
 
 export default function Page() {
   const { theme } = useTheme();

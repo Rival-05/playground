@@ -1,7 +1,7 @@
-import Hero from "@/components/assets/hero";
-import Contributions from "@/components/assets/contribution";
-import Projects from "@/components/assets/projects";
-import Tools from "@/components/assets/tools";
+import Hero from "@/components/landing/hero";
+import Contributions from "@/components/landing/contribution";
+import Projects from "@/components/landing/projects";
+import Tools from "@/components/landing/tools";
 import Footer from "@/components/common/footer";
 import { Separator } from "@/components/ui/separator";
 

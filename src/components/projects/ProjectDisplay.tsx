@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { ProjectItem } from "@/config/projects";
-import ProjectNav from "@/components/common/ProjectNav";
-import ProjectStatusBadge from "@/components/common/ProjectStatusBadge";
-import ProjectTechnologies from "@/components/common/ProjectTechnologies";
+import ProjectNav from "@/components/projects/ProjectNav";
+import ProjectStatusBadge from "@/components/projects/ProjectStatusBadge";
+import ProjectTechnologies from "@/components/projects/ProjectTechnologies";
 import LinkIcon from "@/components/svgs/link";
 import Link from "next/link";
 
@@ -23,7 +23,7 @@ export default function ProjectDisplay({
 
   return (
     <>
-      <div className="flex flex-col items-start space-y-3 px-2 py-3">
+      <div className="flex flex-col items-start space-y-3 py-3">
         <div className="flex items-center gap-2">
           <h1 className="text-3xl font-medium tracking-tight text-foreground/80 link-underline cursor-pointer hover:text-foreground">
             <Link
@@ -47,7 +47,9 @@ export default function ProjectDisplay({
           <ProjectTechnologies technologies={project.technologies} />
         </div>
 
-        <p className="text-base text-muted-foreground ">{project.overview}</p>
+        <p className="text-base text-muted-foreground text-wrap">
+          {project.overview}
+        </p>
       </div>
 
       {displayImage ? (

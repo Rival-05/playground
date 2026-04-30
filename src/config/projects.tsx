@@ -59,7 +59,7 @@ export const projects: ProjectItem[] = [
   {
     title: "Playground",
     overview:
-      "Sleek personal portfolio designed and developed by me to present my works, skills and creativity.",
+      "Sleek personal portfolio designed and developed by me to present my latest works, skills and creativity.",
     technologies: [
       { name: "Next.js", icon: <NextIcon /> },
       { name: "TypeScript", icon: <TypeScriptIcon /> },

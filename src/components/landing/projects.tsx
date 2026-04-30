@@ -1,8 +1,8 @@
 import { Separator } from "@/components/ui/separator";
 import { projects } from "@/config/projects";
 import { Button } from "@/components/ui/button";
-import ProjectStatusBadge from "@/components/common/ProjectStatusBadge";
-import ProjectTechnologies from "@/components/common/ProjectTechnologies";
+import ProjectStatusBadge from "@/components/projects/ProjectStatusBadge";
+import ProjectTechnologies from "@/components/projects/ProjectTechnologies";
 import LinkIcon from "@/components/svgs/link";
 import Arrowright from "@/components/svgs/arrowright";
 import Link from "next/link";
@@ -52,13 +52,11 @@ export default function Projects() {
               </Link>
             </div>
 
-            <p className="text-sm text-muted-foreground md:text-[15px]">
+            <p className="text-sm tracking-wide text-muted-foreground md:text-[15px]">
               {project.overview}
             </p>
 
-            {index < projects.length - 1 ? (
-              <Separator className="bg-white/10" />
-            ) : null}
+            {index < projects.length - 1 ? <Separator /> : null}
           </div>
         ))}
       </div>
