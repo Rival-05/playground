@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-
 import FramerIcon from "@/components/technologies/framer";
 import IPFSIcon from "@/components/technologies/ipfs";
 import NextIcon from "@/components/technologies/next";
@@ -8,6 +7,7 @@ import TailwindIcon from "@/components/technologies/tailwind";
 import TypeScriptIcon from "@/components/technologies/typescript";
 import Postman from "@/components/technologies/postman";
 import Shadcn from "@/components/technologies/shadcn";
+
 export type TechItem =
   | {
       name: string;
@@ -25,6 +25,10 @@ export type ProjectItem = {
   link: string;
   projectPage: string;
   isworking: true | false;
+  image?: string;
+  imageDark?: string;
+  imageLight?: string;
+  description?: string[];
 };
 
 export const projects: ProjectItem[] = [
@@ -44,6 +48,13 @@ export const projects: ProjectItem[] = [
     link: "https://credbind.vercel.app/",
     projectPage: "/projects/credbind",
     isworking: false,
+    image: "/credbind.png",
+    description: [
+      "Built to make certificate verification easier and more reliable for institutions with 24x7 availability.",
+      "Issuers can create and share credentials without dealing with complex setups.",
+      "Added a simple verification page where anyone can check if a certificate is valid.",
+      "Created separate dashboards for issuers and users to keep things organized.",
+    ],
   },
   {
     title: "Playground",
@@ -59,5 +70,13 @@ export const projects: ProjectItem[] = [
     link: "#",
     projectPage: "/projects/playground",
     isworking: true,
+    imageDark: "/playground-dark.png",
+    imageLight: "/playground-light.png",
+    description: [
+      "My portfolio displaying recent projects and skills.",
+      "Made with responsive interactive components and clean UI.",
+      "Added small animations and sound effects using to make it feel smoother and interactive.",
+      "I keep updating it as I learn new things and build new projects.",
+    ],
   },
 ];

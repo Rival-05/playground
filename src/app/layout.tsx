@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "Playground",
   description: "Sleek portfolio designed and built by Rajat Tripathi",
   icons: {
-    icon: [{ url: "/shinchan.png", sizes: "16x16", type: "image/png" }],
+    icon: [{ url: "/shinchan.svg", sizes: "16x16", type: "image/svg" }],
   },
 };
 

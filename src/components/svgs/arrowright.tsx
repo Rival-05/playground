@@ -2,19 +2,13 @@ export default function Arrowright({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="16"
-      height="16"
-      color="currentColor"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      width="14"
+      height="14"
+      fill="currentColor"
+      viewBox="0 0 256 256"
       className={className}
     >
-      <path d="M18.5 12L4.99997 12" />
-      <path d="M13 18C13 18 19 13.5811 19 12C19 10.4188 13 6 13 6" />
+      <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path>
     </svg>
   );
 }

@@ -1,11 +1,8 @@
 import { Separator } from "@/components/ui/separator";
 import { projects } from "@/config/projects";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
+import ProjectStatusBadge from "@/components/common/ProjectStatusBadge";
+import ProjectTechnologies from "@/components/common/ProjectTechnologies";
 import LinkIcon from "@/components/svgs/link";
 import Arrowright from "@/components/svgs/arrowright";
 import Link from "next/link";
@@ -33,29 +30,7 @@ export default function Projects() {
                     {project.title}
                   </Link>
                 </h2>
-                <div
-                  className={`flex items-center gap-1 rounded-md px-2 py-1 text-xs text-foreground/90 tracking-wide ${
-                    project.isworking ? " bg-green-500/10" : " bg-red-500/10 "
-                  }`}
-                >
-                  {project.isworking ? (
-                    <>
-                      <div className="relative flex size-1.5">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
-                        <span className="relative inline-flex size-1.5 rounded-full bg-green-500" />
-                      </div>
-                      <span>Live</span>
-                    </>
-                  ) : (
-                    <>
-                      <div className="relative flex size-1.5">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75" />
-                        <span className="relative inline-flex size-1.5 rounded-full bg-red-500" />
-                      </div>
-                      <span>Building</span>
-                    </>
-                  )}
-                </div>
+                <ProjectStatusBadge isworking={project.isworking} />
                 <div
                   data-orientation="vertical"
                   role="none"
@@ -63,28 +38,7 @@ export default function Projects() {
                   className="shrink-0 bg-muted-foreground data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:h-4 data-vertical:self-center"
                 />
 
-                <div className="flex flex-wrap items-center gap-1">
-                  {project.technologies.map((item) => (
-                    <div key={item.name} className="flex items-center gap-1">
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <div className="flex size-5 items-center justify-center [&>svg]:h-4 [&>svg]:w-4 [&>svg]:fill-current">
-                            {"icon" in item ? (
-                              item.icon
-                            ) : (
-                              <span className="text-[8px] font-semibold tracking-[0.15em] text-white/85">
-                                {item.text}
-                              </span>
-                            )}
-                          </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>{item.name}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </div>
-                  ))}
-                </div>
+                <ProjectTechnologies technologies={project.technologies} />
               </div>
 
               <Link href={project.projectPage}>

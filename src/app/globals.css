@@ -154,10 +154,10 @@ body {
     @apply font-sans;
   }
   ::selection {
-    @apply bg-primary text-primary;
+    @apply bg-foreground/80 text-background;
   }
 }
 
 @utility link-underline {
-  @apply underline decoration-muted-foreground/50 decoration-1 underline-offset-3 transition-colors hover:decoration-primary;
+  @apply underline decoration-muted-foreground/50 decoration-1 underline-offset-4 transition-colors hover:decoration-primary;
 }
