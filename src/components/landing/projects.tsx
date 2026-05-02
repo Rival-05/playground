@@ -24,20 +24,13 @@ export default function Projects() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1"
+                    className="flex items-center gap-2"
                   >
                     <LinkIcon />
                     {project.title}
                   </Link>
                 </h2>
                 <ProjectStatusBadge isworking={project.isworking} />
-                <div
-                  data-orientation="vertical"
-                  role="none"
-                  data-slot="separator"
-                  className="shrink-0 bg-muted-foreground data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:h-4 data-vertical:self-center"
-                />
-
                 <ProjectTechnologies technologies={project.technologies} />
               </div>
 

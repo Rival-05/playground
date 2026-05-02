@@ -6,14 +6,43 @@ description: "A short introduction to the new MDX-based blog system in this play
 
 This blog is powered by MDX, so posts can mix markdown with React-friendly formatting and still stay fully server-rendered.
 
-## Why this setup
+### Why this setup
 
 - Posts live in the `content` directory.
 - Frontmatter is parsed at build time.
 - Pages are statically generated for fast delivery.
 
-```ts
-export const example = "MDX works well for technical writing";
-```
+### How styling works in this blog
 
-You can add more posts by dropping additional `.mdx` files into the same folder.
+MDX content is not styled directly. Instead, each markdown element is mapped to a custom React component, which applies consistent styles across the blog.
+
+For example:
+
+- Headings like `###` are rendered using custom `<h3>` components.
+- Paragraphs are wrapped in styled `<p>` tags.
+- Lists, code blocks, and tables all use predefined styles.
+
+This makes it easy to maintain a consistent design system while still writing simple markdown.
+
+---
+
+### MDX to Styling Mapping
+
+| What you write in MDX | How it is styled                                    |
+| --------------------- | --------------------------------------------------- |
+| `# Heading`           | Styled as large heading using custom `h1` component |
+| `## Heading`          | Styled using `h2` with separator below              |
+| `### Heading`         | Styled as medium heading `h3`                       |
+| Normal text           | Rendered as paragraph with readable spacing         |
+| `**bold text**`       | Styled with stronger font weight                    |
+| `*italic text*`       | Styled with italic + foreground color               |
+| `[link](url)`         | Styled link with underline effect                   |
+| `- list item`         | Styled unordered list with spacing                  |
+| `1. item`             | Styled ordered list                                 |
+| `` `inline code` ``   | Highlighted inline code block                       |
+| Code block (```)      | Styled code container with padding + background     |
+| `> quote`             | Styled blockquote with left border                  |
+| `![img](url)`         | Rounded image with border + shadow                  |
+| Table syntax          | Wrapped in scrollable container with borders        |
+
+#### Thanks for reading :)

@@ -15,14 +15,11 @@ type PostCardProps = {
   post: PostCardPost;
 };
 
-const cardClassName =
-  "flex flex-col rounded-lg bg-card/80 shadow-sm ring-1 ring-inset ring-black/10 dark:ring-white/15";
-
+const cardClassName = "flex flex-col rounded-lg bg-card shadow";
 const contentClassName = "flex items-center justify-between px-4 py-2";
 const detailsClassName = "space-y-4 py-2";
-const headingClassName =
-  "text-lg font-medium leading-tight tracking-tight text-foreground";
-const descriptionClassName = "text-base text-muted-foreground";
+const headingClassName = "text-lg font-medium text-foreground";
+const descriptionClassName = "text-base text-muted-foreground text-wrap";
 const metaClassName =
   "flex flex-wrap items-center gap-3 text-sm text-muted-foreground";
 const separatorClassName = "h-1 w-1 shrink-0 rounded-full bg-foreground";

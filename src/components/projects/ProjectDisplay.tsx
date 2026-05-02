@@ -1,10 +1,12 @@
 import Image from "next/image";
-import { ProjectItem } from "@/config/projects";
 import ProjectNav from "@/components/projects/ProjectNav";
 import ProjectStatusBadge from "@/components/projects/ProjectStatusBadge";
 import ProjectTechnologies from "@/components/projects/ProjectTechnologies";
 import LinkIcon from "@/components/svgs/link";
+import ArrowLeft from "@/components/svgs/arrowleft";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ProjectItem } from "@/config/projects";
 
 type ProjectDisplayProps = {
   project: ProjectItem;
@@ -24,26 +26,25 @@ export default function ProjectDisplay({
   return (
     <>
       <div className="flex flex-col items-start space-y-3 py-3">
-        <div className="flex items-center gap-2">
+        <Button asChild variant="ghost">
+          <Link href="/" className="group inline-flex items-center gap-2">
+            <ArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
+            <span>Back</span>
+          </Link>
+        </Button>
+        <div className="flex items-center gap-3">
           <h1 className="text-3xl font-medium tracking-tight text-foreground/80 link-underline cursor-pointer hover:text-foreground">
             <Link
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1"
+              className="flex items-center gap-2"
             >
               <LinkIcon className="w-5 h-5" />
               {project.title}
             </Link>
           </h1>
           <ProjectStatusBadge isworking={project.isworking} />
-          <div
-            data-orientation="vertical"
-            role="none"
-            data-slot="separator"
-            className="shrink-0 bg-muted-foreground data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:h-4 data-vertical:self-center"
-          />
-
           <ProjectTechnologies technologies={project.technologies} />
         </div>
 

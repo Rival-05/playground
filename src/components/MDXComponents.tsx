@@ -1,113 +1,190 @@
 import type { ComponentPropsWithoutRef } from "react";
+import { Separator } from "@/components/ui/separator";
 
-type CodeProps = ComponentPropsWithoutRef<"code">;
-type PreProps = ComponentPropsWithoutRef<"pre">;
+const cx = (...c: (string | undefined)[]) => c.filter(Boolean).join(" ");
+
+const headingBaseClassName =
+  "scroll-m-20 font-heading tracking-tight text-foreground";
+
+const bodyClassName = "text-base leading-7 text-muted-foreground";
+const linkClassName = "font-medium text-foreground";
+
+const listClassName =
+  "my-6 ml-6 space-y-2 text-base leading-7 text-muted-foreground";
+
+const inlineCodeClassName =
+  "rounded-sm ring-1 ring-inset ring-black/10 dark:ring-white/15 bg-card px-1.5 py-0.5 text-sm text-foreground font-medium";
+
+const preClassName =
+  "rounded-sm ring-1 ring-inset ring-black/10 dark:ring-white/15 bg-card px-3 py-4 text-sm text-foreground";
+
+const tableWrapperClassName =
+  "my-6 w-full overflow-x-auto rounded-lg border border-border ";
+
+const tableClassName = "w-full text-sm";
+
+const cellClassName =
+  "px-4 py-3 align-top text-foreground border-t border-border";
+
+const imageClassName =
+  "my-8 rounded-2xl border border-border/60 dark:border-white/10 shadow-sm";
 
 export const mdxComponents = {
   h1: ({ className, ...props }: ComponentPropsWithoutRef<"h1">) => (
     <h1
-      className={`scroll-m-20 text-4xl font-semibold tracking-tight ${className ?? ""}`.trim()}
+      className={cx(
+        headingBaseClassName,
+        "text-3xl font-medium leading-tight",
+        className,
+      )}
       {...props}
     />
   ),
+
   h2: ({ className, ...props }: ComponentPropsWithoutRef<"h2">) => (
-    <h2
-      className={`scroll-m-20 border-b border-border pb-2 text-3xl font-semibold tracking-tight first:mt-0 ${className ?? ""}`.trim()}
-      {...props}
-    />
+    <div className="space-y-3 md:space-y-4">
+      <h2
+        className={cx(
+          headingBaseClassName,
+          "text-2xl font-medium leading-tight",
+          className,
+        )}
+        {...props}
+      />
+      <Separator className="my-0" />
+    </div>
   ),
+
   h3: ({ className, ...props }: ComponentPropsWithoutRef<"h3">) => (
     <h3
-      className={`scroll-m-20 text-2xl font-semibold tracking-tight ${className ?? ""}`.trim()}
+      className={cx(
+        headingBaseClassName,
+        "text-xl font-medium leading-loose",
+        className,
+      )}
       {...props}
     />
   ),
+
+  h4: ({ className, ...props }: ComponentPropsWithoutRef<"h4">) => (
+    <h4
+      className={cx(
+        headingBaseClassName,
+        "text-lg font-medium tracking-wide leading-loose",
+        className,
+      )}
+      {...props}
+    />
+  ),
+
   p: ({ className, ...props }: ComponentPropsWithoutRef<"p">) => (
-    <p
-      className={`leading-7 text-muted-foreground ${className ?? ""}`.trim()}
+    <p className={cx(bodyClassName, className)} {...props} />
+  ),
+
+  strong: ({ className, ...props }: ComponentPropsWithoutRef<"strong">) => (
+    <strong
+      className={cx("font-medium text-foreground", className)}
       {...props}
     />
   ),
+
+  em: ({ className, ...props }: ComponentPropsWithoutRef<"em">) => (
+    <em className={cx("italic text-foreground", className)} {...props} />
+  ),
+
   a: ({ className, ...props }: ComponentPropsWithoutRef<"a">) => (
-    <a
-      className={`font-medium text-foreground underline underline-offset-4 decoration-border transition-colors hover:decoration-foreground ${className ?? ""}`.trim()}
-      {...props}
-    />
+    <a className={cx("link-underline", linkClassName, className)} {...props} />
   ),
+
   ul: ({ className, ...props }: ComponentPropsWithoutRef<"ul">) => (
-    <ul
-      className={`my-6 ml-6 list-disc space-y-2 ${className ?? ""}`.trim()}
-      {...props}
-    />
+    <ul className={cx(listClassName, "list-disc", className)} {...props} />
   ),
+
   ol: ({ className, ...props }: ComponentPropsWithoutRef<"ol">) => (
-    <ol
-      className={`my-6 ml-6 list-decimal space-y-2 ${className ?? ""}`.trim()}
-      {...props}
-    />
+    <ol className={cx(listClassName, "list-decimal", className)} {...props} />
   ),
+
   li: ({ className, ...props }: ComponentPropsWithoutRef<"li">) => (
-    <li
-      className={`leading-7 text-muted-foreground ${className ?? ""}`.trim()}
-      {...props}
-    />
+    <li className={cx("marker:text-muted-foreground", className)} {...props} />
   ),
+
   blockquote: ({
     className,
     ...props
   }: ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote
-      className={`mt-6 border-l-2 border-border pl-6 italic text-muted-foreground ${className ?? ""}`.trim()}
+      className={cx(
+        "my-6 border-l-2 border-border/60 dark:border-white/10 pl-4 italic text-muted-foreground md:pl-6",
+        className,
+      )}
       {...props}
     />
   ),
-  hr: ({ className, ...props }: ComponentPropsWithoutRef<"hr">) => (
-    <hr className={`my-8 border-border ${className ?? ""}`.trim()} {...props} />
+
+  hr: () => <Separator className="my-8 md:my-10" />,
+
+  pre: ({ className, ...props }: ComponentPropsWithoutRef<"pre">) => (
+    <pre className={cx(preClassName, className)} {...props} />
   ),
-  table: ({ className, ...props }: ComponentPropsWithoutRef<"table">) => (
-    <div className="my-6 w-full overflow-x-auto">
-      <table
-        className={`w-full border-collapse border border-border text-sm ${className ?? ""}`.trim()}
-        {...props}
-      />
-    </div>
-  ),
-  th: ({ className, ...props }: ComponentPropsWithoutRef<"th">) => (
-    <th
-      className={`border border-border bg-muted px-4 py-2 text-left font-medium text-foreground ${className ?? ""}`.trim()}
-      {...props}
-    />
-  ),
-  td: ({ className, ...props }: ComponentPropsWithoutRef<"td">) => (
-    <td
-      className={`border border-border px-4 py-2 ${className ?? ""}`.trim()}
-      {...props}
-    />
-  ),
-  pre: ({ className, ...props }: PreProps) => (
-    <pre
-      className={`my-6 overflow-x-auto rounded-2xl border border-border bg-zinc-950 p-4 text-sm text-zinc-100 shadow-sm ${className ?? ""}`.trim()}
-      {...props}
-    />
-  ),
-  code: ({ className, children, ...props }: CodeProps) => {
-    const isInline = !className;
+
+  code: ({
+    className,
+    children,
+    ...props
+  }: ComponentPropsWithoutRef<"code">) => {
+    const isInline = !className?.includes("language-");
 
     if (isInline) {
       return (
-        <code
-          className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[0.85em] text-foreground"
-          {...props}
-        >
+        <code className={inlineCodeClassName} {...props}>
           {children}
         </code>
       );
     }
 
     return (
-      <code className={`font-mono ${className ?? ""}`.trim()} {...props}>
+      <code className={cx("text-sm text-foreground", className)} {...props}>
         {children}
       </code>
     );
   },
+
+  img: ({ className, ...props }: ComponentPropsWithoutRef<"img">) => (
+    <img className={cx(imageClassName, className)} {...props} />
+  ),
+
+  table: ({ className, ...props }: ComponentPropsWithoutRef<"table">) => (
+    <div className={tableWrapperClassName}>
+      <table className={cx(tableClassName, className)} {...props} />
+    </div>
+  ),
+
+  thead: ({ className, ...props }: ComponentPropsWithoutRef<"thead">) => (
+    <thead className={cx("bg-muted border-border", className)} {...props} />
+  ),
+
+  th: ({ className, ...props }: ComponentPropsWithoutRef<"th">) => (
+    <th
+      className={cx(
+        "px-4 py-3 text-left font-medium text-foreground",
+        className,
+      )}
+      {...props}
+    />
+  ),
+
+  tbody: ({ className, ...props }: ComponentPropsWithoutRef<"tbody">) => (
+    <tbody className={cx("divide-y divide-border", className)} {...props} />
+  ),
+
+  tr: ({ className, ...props }: ComponentPropsWithoutRef<"tr">) => (
+    <tr
+      className={cx("transition-colors hover:bg-muted", className)}
+      {...props}
+    />
+  ),
+
+  td: ({ className, ...props }: ComponentPropsWithoutRef<"td">) => (
+    <td className={cx(cellClassName, className)} {...props} />
+  ),
 };

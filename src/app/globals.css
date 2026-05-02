@@ -155,7 +155,7 @@ body {
     @apply font-sans;
   }
   ::selection {
-    @apply bg-foreground/80 text-background;
+    @apply bg-foreground/90 text-background;
   }
 }
 
