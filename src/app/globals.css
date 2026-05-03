@@ -162,3 +162,61 @@ body {
 @utility link-underline {
   @apply underline decoration-muted-foreground/50 decoration-1 underline-offset-4 transition-colors hover:decoration-primary;
 }
+
+/* =========================
+   Responsive Overrides Only
+   ========================= */
+
+/* Base responsive safety */
+img,
+video,
+iframe,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile: <= 480px */
+@media (max-width: 480px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .hover-preview-popover {
+    display: none !important;
+  }
+
+  .hover-preview-card {
+    width: min(18rem, calc(100vw - 1rem));
+  }
+
+  .no-scrollbar {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Tablet: 481px - 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .hover-preview-popover {
+    display: none !important;
+  }
+
+  .hover-preview-card {
+    width: min(18rem, calc(100vw - 1.5rem));
+  }
+}
+
+/* Laptop: 769px - 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}

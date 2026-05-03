@@ -66,7 +66,6 @@ async function resolvePostImage(slug: string, image?: string) {
             await fs.access(fullPath);
             return assetPath;
         } catch {
-            // Try the next common extension.
         }
     }
 

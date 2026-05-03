@@ -23,7 +23,7 @@ export default function Footer() {
 
         const data = await res.json();
 
-        setMessage(data.message ?? null);
+        setMessage(data.message ? data.message + " visitor." : null);
       } catch (err: any) {
         if (err.name !== "AbortError") {
           setError(true);
@@ -77,8 +77,8 @@ export default function Footer() {
       <div>
         {!loading && !error && message && (
           <h3 className="flex gap-1 text-muted-foreground">
-            You're the <p className="text-foreground font-medium">{message}</p>{" "}
-            visitor.
+            You're the{" "}
+            <span className="text-foreground font-medium">{message}</span>
           </h3>
         )}
       </div>
