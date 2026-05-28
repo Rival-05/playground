@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 
+import { Reveal } from "@/components/animations/reveal";
 import {
   GitHubContributions,
   GitHubContributionsFallback,
@@ -13,11 +14,13 @@ export default function Contributions() {
   const contributions = getCachedContributions(GITHUB_USERNAME);
 
   return (
-    <Suspense fallback={<GitHubContributionsFallback />}>
-      <GitHubContributions
-        contributions={contributions}
-        githubProfileUrl={GITHUB_PROFILE_URL}
-      />
-    </Suspense>
+    <Reveal>
+      <Suspense fallback={<GitHubContributionsFallback />}>
+        <GitHubContributions
+          contributions={contributions}
+          githubProfileUrl={GITHUB_PROFILE_URL}
+        />
+      </Suspense>
+    </Reveal>
   );
 }

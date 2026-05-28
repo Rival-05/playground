@@ -16,11 +16,11 @@ export interface HoverPreviewConfig {
 export const hoverPreviews: Record<string, HoverPreviewConfig> = {
     music: {
         type: "music",
-        href: "https://open.spotify.com/track/6UgcN95w7vQxkR8sEFmwHG",
+        href: "https://open.spotify.com/track/5hx7w26Zi3zafMgvMTUqF6",
         platformLabel: "Spotify",
         data: {
-            title: "Chahun Main Ya Naa",
-            subtitle: "Aashiqui 2 · Soundtrack",
+            title: "SNAP",
+            subtitle: "Rosa Linn",
             image: "/song.png",
         } as MusicPreviewData,
     },
@@ -29,7 +29,7 @@ export const hoverPreviews: Record<string, HoverPreviewConfig> = {
         href: "https://www.hotstar.com/in/movies/shiddat/",
         platformLabel: "Hotstar",
         data: {
-            title: "Movies",
+            title: "Movie",
             subtitle: "Shiddat",
             image: "/movie.png",
         } as MusicPreviewData,
