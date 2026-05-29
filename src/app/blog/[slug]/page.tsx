@@ -27,7 +27,7 @@ const separatorClassName = "h-1 w-1 shrink-0 rounded-full bg-foreground";
 
 export async function generateStaticParams() {
   const slugs = await getPostSlugs();
-  return slugs.map((slug: any) => ({ slug }));
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -51,47 +51,52 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
+  let post: Awaited<ReturnType<typeof getPostBySlug>> | null = null;
 
   try {
-    const post = await getPostBySlug(slug);
-
-    return (
-      <article className={articleClassName}>
-        <header className={headerClassName}>
-          <Button asChild variant="ghost">
-            <Link href="/blog" className="group inline-flex items-center gap-2">
-              <ArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
-              <span>Blog</span>
-            </Link>
-          </Button>
-          <div className="flex flex-col gap-1">
-            <h2 className={headingClassName}>{post.title}</h2>
-            <span className={descriptionClassName}>{post.description}</span>
-          </div>
-          <div className={metaClassName}>
-            <time dateTime={post.date}>
-              {format(new Date(post.date), "MMMM d, yyyy")}
-            </time>
-            <span aria-hidden="true" className={separatorClassName} />
-            <span>{post.readingTime}</span>
-          </div>
-        </header>
-        <Separator />
-
-        <div className="prose prose-neutral dark:prose-invert max-w-none prose-table:my-0">
-          <MDXRemote
-            source={post.content}
-            components={mdxComponents}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [remarkGfm],
-              },
-            }}
-          />
-        </div>
-      </article>
-    );
+    post = await getPostBySlug(slug);
   } catch {
     notFound();
   }
+
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <article className={articleClassName}>
+      <header className={headerClassName}>
+        <Button asChild variant="ghost">
+          <Link href="/blog" className="group inline-flex items-center gap-2">
+            <ArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
+            <span>Blog</span>
+          </Link>
+        </Button>
+        <div className="flex flex-col gap-1">
+          <h2 className={headingClassName}>{post.title}</h2>
+          <span className={descriptionClassName}>{post.description}</span>
+        </div>
+        <div className={metaClassName}>
+          <time dateTime={post.date}>
+            {format(new Date(post.date), "MMMM d, yyyy")}
+          </time>
+          <span aria-hidden="true" className={separatorClassName} />
+          <span>{post.readingTime}</span>
+        </div>
+      </header>
+      <Separator />
+
+      <div className="prose prose-neutral dark:prose-invert max-w-none prose-table:my-0">
+        <MDXRemote
+          source={post.content}
+          components={mdxComponents}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [remarkGfm],
+            },
+          }}
+        />
+      </div>
+    </article>
+  );
 }

@@ -1,0 +1,56 @@
+---
+title: "Adding Command Palette to Playground"
+date: "2026-05-29"
+description: "A quick look at how I implemented a keyboard-driven shortcuts using shadcn/ui."
+---
+
+One small feature I recently added to Playground is a command palette inspired by modern developer tools.
+
+It allows quick navigation using keyboard shortcuts like:
+
+- `G + H` → Home
+- `G + P` → Projects
+- `G + B` → Blog
+- `D` → Toggle theme
+
+## Preview
+
+<div className="block dark:hidden">
+  <img
+    src="/shortcuts.png"
+    alt="Command palette light mode"
+    className="rounded-xl border shadow-md"
+  />
+</div>
+
+<div className="hidden dark:block">
+  <img
+    src="/shortcuts-dark.png"
+    alt="Command palette dark mode"
+    className="rounded-xl border shadow-md"
+  />
+</div>
+
+### How I built it
+
+The command palette is built using `cmdk` through shadcn/ui components, with custom keyboard listeners for shortcuts and navigation.
+
+For displaying shortcuts consistently, I used the shadcn `Kbd` component:
+
+<a
+  href="https://ui.shadcn.com/docs/components/radix/kbd"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  shadcn/ui Kbd Component
+</a>
+
+This made the shortcut UI feel much cleaner and closer to native command menus used in modern apps.
+
+### Why I added it
+
+I wanted the portfolio to feel more interactive and keyboard-friendly instead of being just another static developer portfolio.
+
+Small UX details like this make the site feel much more polished.
+
+#### Thanks for reading :)

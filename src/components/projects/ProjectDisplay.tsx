@@ -25,32 +25,34 @@ export default function ProjectDisplay({
 
   return (
     <>
-      <div className="flex flex-col items-start space-y-3 py-3">
+      <div className="flex flex-col items-start space-y-3 ">
         <Button asChild variant="ghost">
           <Link href="/" className="group inline-flex items-center gap-2">
             <ArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
             <span>Back</span>
           </Link>
         </Button>
-        <div className="flex items-center gap-3">
-          <h1 className="text-3xl font-medium tracking-tight text-foreground/80 link-underline cursor-pointer hover:text-foreground">
-            <Link
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2"
-            >
-              <LinkIcon className="w-5 h-5" />
-              {project.title}
-            </Link>
-          </h1>
-          <ProjectStatusBadge isworking={project.isworking} />
-          <ProjectTechnologies technologies={project.technologies} />
-        </div>
+        <div className="flex flex-col py-4 gap-2">
+          <div className="flex items-center gap-3">
+            <h1 className="text-3xl font-medium tracking-tight text-foreground/80 link-underline cursor-pointer hover:text-foreground">
+              <Link
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
+                <LinkIcon className="w-5 h-5" />
+                {project.title}
+              </Link>
+            </h1>
+            <ProjectStatusBadge isworking={project.isworking} />
+            <ProjectTechnologies technologies={project.technologies} />
+          </div>
 
-        <p className="text-base text-muted-foreground text-wrap">
-          {project.overview}
-        </p>
+          <p className="text-base text-muted-foreground text-wrap">
+            {project.overview}
+          </p>
+        </div>
       </div>
 
       {displayImage ? (

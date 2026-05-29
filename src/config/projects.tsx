@@ -47,7 +47,7 @@ export const projects: ProjectItem[] = [
     ],
     link: "https://credbind.vercel.app/",
     projectPage: "/projects/credbind",
-    isworking: false,
+    isworking: true,
     image: "/credbind.png",
     description: [
       "Built to make certificate verification easier and more reliable for institutions with 24x7 availability.",

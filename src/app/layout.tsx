@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import Providers from "@/components/assets/Providers";
 import Navbar from "@/components/common/navbar";
+import CommandPalette from "@/components/CommandPalette";
 import { Container } from "@/components/common/Container";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { seo } from "@/config/seo";
+import { CommandPaletteProvider } from "@/hooks/useCommandPalette";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -56,12 +58,15 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Providers>
-          <TooltipProvider>
-            <Navbar />
-            <Container>
-              <main className="w-full pt-10">{children}</main>
-            </Container>
-          </TooltipProvider>
+          <CommandPaletteProvider>
+            <TooltipProvider>
+              <Navbar />
+              <Container>
+                <main className="w-full pt-10">{children}</main>
+              </Container>
+              <CommandPalette />
+            </TooltipProvider>
+          </CommandPaletteProvider>
         </Providers>
         <Analytics /> <SpeedInsights />
       </body>

@@ -1,18 +1,18 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { projects } from "@/config/projects";
 import { Container } from "@/components/common/Container";
 import ProjectDisplay from "@/components/projects/ProjectDisplay";
 
 export default function Page() {
   const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const isClient = useSyncExternalStore(
+    () => () => undefined,
+    () => true,
+    () => false,
+  );
 
   const path = "/projects/playground";
   const project = projects.find((p) => p.projectPage === path);
@@ -22,7 +22,7 @@ export default function Page() {
   const prev = projects[(idx - 1 + projects.length) % projects.length];
   const next = projects[(idx + 1) % projects.length];
 
-  const imageToShow = mounted
+  const imageToShow = isClient
     ? theme === "dark"
       ? project.imageDark || project.image
       : project.imageLight || project.image
