@@ -25,7 +25,7 @@ export function GitHubStars({
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button className="gap-2 pr-1.5 pl-2" variant="ghost" asChild>
+        <Button variant="ghost" asChild>
           <Link
             href={`https://github.com/${repo}`}
             target="_blank"
@@ -49,8 +49,8 @@ export function GitHubStars({
         </Button>
       </TooltipTrigger>
 
-      <TooltipContent className="text-sm">
-        {new Intl.NumberFormat(locales).format(stargazersCount)} stars
+      <TooltipContent className="text-xs tracking-wide">
+        {new Intl.NumberFormat(locales).format(stargazersCount)} Stars
       </TooltipContent>
     </Tooltip>
   );

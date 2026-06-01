@@ -44,11 +44,11 @@ export default function ThemeToggle() {
         </Button>
       </TooltipTrigger>
       <TooltipContent>
-        <span className="text-sm">
+        <span className="tracking-wide text-xs">
           <KbdGroup className="gap-1.5">
             <Kbd>D</Kbd>
           </KbdGroup>{" "}
-          Toggle Mode
+          Toggle theme
         </span>
       </TooltipContent>
     </Tooltip>

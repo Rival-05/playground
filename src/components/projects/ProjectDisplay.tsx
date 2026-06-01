@@ -27,7 +27,10 @@ export default function ProjectDisplay({
     <>
       <div className="flex flex-col items-start space-y-3 ">
         <Button asChild variant="ghost">
-          <Link href="/" className="group inline-flex items-center gap-2">
+          <Link
+            href="/"
+            className="group inline-flex items-center gap-2 text-muted-foreground hover:text-foreground"
+          >
             <ArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
             <span>Back</span>
           </Link>

@@ -11,7 +11,7 @@ import { Reveal } from "@/components/animations/reveal";
 export default function Projects() {
   return (
     <Reveal>
-      <section className="w-full space-y-8 py-8 md:py-10">
+      <section className="w-full space-y-8 py-6 md:py-8">
         <h2 className="text-xl font-medium tracking-tight text-foreground">
           Projects
         </h2>
@@ -56,6 +56,13 @@ export default function Projects() {
           ))}
         </div>
       </section>
+      <div className="mt-2 flex justify-center">
+        <Link href="/projects/playground">
+          <Button className="cursor-pointer" variant="secondary">
+            All Projects
+          </Button>
+        </Link>
+      </div>
     </Reveal>
   );
 }

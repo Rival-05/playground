@@ -43,14 +43,14 @@ export default function Navbar({ className }: NavbarProps) {
           <button
             type="button"
             onClick={openPalette}
-            className="inline-flex h-8 items-center gap-2 rounded-lg border border-border/70 bg-background/60 px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted/70 hover:text-foreground"
+            className="hidden md:inline-flex h-8 items-center gap-2 rounded-lg border border-border/70 bg-background/40 px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/40 hover:text-foreground cursor-text"
             aria-label="Open command palette"
           >
             <Search className="size-3.5" aria-hidden="true" />
             <span>Search</span>
             <span className="inline-flex items-center gap-1">
-              <Kbd className="h-4 min-w-4 px-1 text-[10px]">Ctrl</Kbd>
-              <Kbd className="h-4 min-w-4 px-1 text-[10px]">K</Kbd>
+              <Kbd>Ctrl</Kbd>
+              <Kbd>K</Kbd>
             </span>
           </button>
         </div>

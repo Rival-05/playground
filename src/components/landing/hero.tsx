@@ -5,7 +5,7 @@ import { Reveal } from "@/components/animations/reveal";
 export default function Hero() {
   return (
     <Reveal>
-      <section className="w-full space-y-5 py-8 text-base leading-8 md:py-10">
+      <section className="w-full space-y-4 py-8 text-base leading-8 md:py-10">
         <div className="flex items-center gap-3">
           <Image
             src="/shinchan.svg"
@@ -20,29 +20,29 @@ export default function Hero() {
         </div>
 
         <h2 className="text-base font-normal text-muted-foreground">
-          I&apos;m a <span className="text-brand">software developer</span>,
-          builds modern web applications with minimal and sleek design.
+          I&apos;m a <span className="text-brand">software developer</span>, I
+          design and build modern web applications.
         </h2>
 
         <h2 className="text-base font-normal text-muted-foreground">
-          I work with Next.js, PostgreSQL, and TypeScript to create fast and
-          scalable products.
+          I work with Next.js and TypeScript to create fast and scalable
+          products.
         </h2>
 
         <h2 className="text-base font-normal text-muted-foreground">
-          Apart from coding, you&apos;ll probably find me listening to{" "}
+          Apart from this, you&apos;ll find me listening to{" "}
           <HoverPreview previewKey="music">music</HoverPreview> or watching{" "}
           <HoverPreview previewKey="movies">movies</HoverPreview> but mostly
-          spending time with my loved ones ❤️
+          spending time with my loved ones 🌸
         </h2>
 
         <h2 className="text-base font-normal text-muted-foreground">
-          I love trying new hobbies, learning photography and exploring new
-          places and ideas and playing sports whenever I get the chance.
+          Exploring new things, learning photography and exploring new places
+          and playing sports whenever I get to.
         </h2>
         <h2 className="text-base font-normal text-muted-foreground">
           I enjoy being <span className="text-brand">creative</span> and
-          constantly improving my skills.
+          constantly improving myself.
         </h2>
       </section>
     </Reveal>

@@ -1,6 +1,7 @@
 import Hero from "@/components/landing/hero";
 import Contributions from "@/components/landing/contribution";
 import Projects from "@/components/landing/projects";
+import BlogPreview from "@/components/landing/blog";
 import Tools from "@/components/landing/tools";
 import Footer from "@/components/common/footer";
 import { Separator } from "@/components/ui/separator";
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <Contributions />
       <Projects />
+      <BlogPreview />
       <Tools />
       <Separator />
       <Footer />

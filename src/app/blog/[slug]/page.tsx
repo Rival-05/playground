@@ -69,7 +69,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <Button asChild variant="ghost">
           <Link href="/blog" className="group inline-flex items-center gap-2">
             <ArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
-            <span>Blog</span>
+            <span>Blogs</span>
           </Link>
         </Button>
         <div className="flex flex-col gap-1">

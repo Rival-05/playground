@@ -17,7 +17,7 @@ export default async function BlogPage() {
           Latest chronicles
         </h1>
         <p className="text-base leading-7 text-muted-foreground">
-          Collection of technical writeups and stuff I found impressive.
+          Collection of technical writeups and thoughts.
         </p>
       </div>
 

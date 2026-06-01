@@ -1,67 +1,21 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { SunMoon, BookOpen, Search, Home, FolderOpen } from "lucide-react";
+import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
+import {
+  COMMAND_ITEMS,
+  GROUP_ORDER,
+  CHORD_PREFIX,
+  type CommandItem,
+  type ShortcutKey,
+} from "@/config/commandPalette";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import { useCommandPalette } from "@/hooks/useCommandPalette";
 import { cn } from "@/lib/utils";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { toggleThemeWithSound } from "@/lib/themeToggle";
-
-type PaletteGroupKey = "Navigation" | "Appearance";
-
-type CommandItem = {
-  id: string;
-  label: string;
-  href?: string;
-  action?: () => void;
-  shortcuts: [string, string] | [string];
-  group: PaletteGroupKey;
-  icon: React.ReactNode;
-};
-
-type ShortcutKey = "g" | "h" | "p" | "b" | "d";
-
-const CHORD_PREFIX = "g";
-
-const COMMAND_ITEMS: CommandItem[] = [
-  {
-    id: "home",
-    label: "Home",
-    href: "/",
-    shortcuts: ["G", "H"],
-    group: "Navigation",
-    icon: <Home className="size-4" aria-hidden="true" />,
-  },
-  {
-    id: "projects",
-    label: "Projects",
-    href: "/projects/playground",
-    shortcuts: ["G", "P"],
-    group: "Navigation",
-    icon: <FolderOpen className="size-4" aria-hidden="true" />,
-  },
-  {
-    id: "blog",
-    label: "Blog",
-    href: "/blog",
-    shortcuts: ["G", "B"],
-    group: "Navigation",
-    icon: <BookOpen className="size-4" aria-hidden="true" />,
-  },
-  {
-    id: "theme",
-    label: "Toggle theme",
-    action: () => undefined,
-    shortcuts: ["D"],
-    group: "Appearance",
-    icon: <SunMoon className="size-4" aria-hidden="true" />,
-  },
-];
-
-const GROUP_ORDER: PaletteGroupKey[] = ["Navigation", "Appearance"];
 
 export default function CommandPalette() {
   const router = useRouter();
@@ -407,8 +361,8 @@ export default function CommandPalette() {
                                 className={cn(
                                   "flex w-full items-center justify-between rounded-lg px-2 py-2 text-left text-sm transition-colors",
                                   commandIndex === safeSelectedIndex
-                                    ? "bg-muted text-foreground"
-                                    : "text-muted-foreground hover:bg-muted/10 hover:text-foreground",
+                                    ? "bg-muted/40 text-foreground"
+                                    : "text-muted-foreground hover:bg-muted/40 hover:text-foreground",
                                 )}
                               >
                                 <span className="flex items-center gap-2">

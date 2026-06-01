@@ -13,7 +13,7 @@ type Props = {
 export default function ProjectNav({
   prevHref,
   nextHref,
-  prevLabel = "Back",
+  prevLabel = "Prev",
   nextLabel = "Next",
 }: Props) {
   return (
