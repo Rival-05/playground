@@ -18,13 +18,13 @@ const cardClassName =
   "group flex flex-col rounded-lg bg-card hover:bg-muted/70 shadow";
 const contentClassName = "flex items-center justify-between px-4 py-2";
 const detailsClassName = "space-y-3 py-2";
-const headingClassName = "text-lg font-medium text-foreground";
+const headingClassName = "text-lg font-medium text-foreground/80";
 const descriptionClassName = "text-base text-muted-foreground text-wrap";
 const metaClassName =
   "flex flex-wrap items-center gap-3 text-sm text-muted-foreground";
 const separatorClassName = "h-1 w-1 shrink-0 rounded-full bg-foreground";
 const actionClassName =
-  "flex font-medium text-sm items-center gap-1 text-muted-foreground group-hover:text-foreground";
+  "hidden md:inline-flex font-medium text-sm items-center gap-1 text-muted-foreground group-hover:text-foreground";
 
 function PostCard({ post }: PostCardProps) {
   return (

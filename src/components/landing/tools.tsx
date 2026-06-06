@@ -22,9 +22,11 @@ export default function Tools() {
               <div
                 className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${colors[index]}`}
               />
-              <div className="flex flex-wrap items-baseline gap-3 text-muted-foreground hover:text-primary">
-                <span className="text-base font-semibold">{tool.name}</span>
-                <p className="text-sm leading-relaxed tracking-wide md:text-[15px]">
+              <div className="w-full flex flex-wrap group items-baseline gap-1 md:gap-4 text-foreground/80">
+                <span className="text-base font-semibold underline-none underline-offset-3 group-hover:underline transition-all duration-100">
+                  {tool.name}
+                </span>
+                <p className="text-sm leading-relaxed tracking-wide md:text-[15px] text-muted-foreground">
                   {tool.description}
                 </p>
               </div>

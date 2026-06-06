@@ -26,11 +26,11 @@ export const hoverPreviews: Record<string, HoverPreviewConfig> = {
     },
     movies: {
         type: "music",
-        href: "https://www.hotstar.com/in/movies/shiddat/",
-        platformLabel: "Hotstar",
+        href: "https://www.primevideo.com/detail/0JA1RIIN95EDMDVY2X1BLHKBB4",
+        platformLabel: "Prime Video",
         data: {
             title: "Movie",
-            subtitle: "Shiddat",
+            subtitle: "We Live In Time",
             image: "/movie.png",
         } as MusicPreviewData,
     },

@@ -41,17 +41,16 @@ export default function Footer() {
 
   return (
     <Reveal>
-      <div className="mx-auto flex w-full max-w-3xl flex-col items-start justify-between px-2 py-6 text-sm text-muted-foreground sm:flex-row sm:items-center">
+      <div className="mx-auto flex w-full max-w-3xl items-start justify-between px-2 py-6 text-sm text-muted-foreground sm:items-center">
         <div className="flex flex-col items-start gap-2">
           <div className="flex items-center gap-2">
-            {currentYear}
+            <span className="text-muted-foreground">Made by</span>
             <Link
               href="https://x.com/Rival_o5"
               className="font-medium text-primary link-underline"
             >
               Rajat Tripathi
             </Link>
-            <span>All rights reserved.</span>
           </div>
 
           <span className="flex items-center gap-1">
