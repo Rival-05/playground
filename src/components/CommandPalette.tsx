@@ -324,7 +324,7 @@ export default function CommandPalette() {
                   type="text"
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Type a command or search..."
+                  placeholder="Search for a command..."
                   className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
                   aria-label="Search command palette"
                 />

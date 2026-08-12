@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/shinchan.svg",
+        url: "/avatar.svg",
         sizes: "16x16",
         type: "image/svg+xml",
       },

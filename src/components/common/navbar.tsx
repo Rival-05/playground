@@ -4,7 +4,6 @@ import ThemeToggle from "@/components/ui/Toggle";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { NavItemGitHub } from "@/components/landing/githubstars";
 import { Kbd } from "@/components/ui/kbd";
 import { useCommandPalette } from "@/hooks/useCommandPalette";
 
@@ -12,6 +11,7 @@ const LINKS = [
   { title: "Home", href: "/" },
   { title: "Projects", href: "/projects/playground" },
   { title: "Blog", href: "/blog" },
+  { title: "Personal", href: "/personal" },
 ] as const;
 
 type NavbarProps = {
@@ -34,7 +34,7 @@ export default function Navbar({ className }: NavbarProps) {
             <Link
               href={link.href}
               key={link.title}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.title}
             </Link>
@@ -55,10 +55,7 @@ export default function Navbar({ className }: NavbarProps) {
           </button>
         </div>
 
-        <div className="flex items-center gap-4">
-          <NavItemGitHub />
-          <ThemeToggle />
-        </div>
+        <ThemeToggle />
       </div>
     </header>
   );

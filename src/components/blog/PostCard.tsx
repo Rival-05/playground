@@ -15,7 +15,7 @@ type PostCardProps = {
 };
 
 const cardClassName =
-  "group flex flex-col rounded-lg bg-card hover:bg-muted/70 shadow";
+  "group flex flex-col rounded-lg bg-card hover:bg-muted/60 shadow";
 const contentClassName = "flex items-center justify-between px-4 py-2";
 const detailsClassName = "space-y-3 py-2";
 const headingClassName = "text-lg font-medium text-foreground/80";

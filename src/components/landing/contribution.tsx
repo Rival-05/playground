@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-
 import { Reveal } from "@/components/animations/reveal";
 import {
   GitHubContributions,

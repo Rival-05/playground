@@ -112,8 +112,8 @@ const useContributionGraph = () => {
   return context;
 };
 
-const fillHoles = (activities: Activity[]): Activity[] => {
-  if (activities.length === 0) {
+const fillHoles = (activities: Activity[] = []): Activity[] => {
+  if (!activities || activities.length === 0) {
     return [];
   }
 
@@ -151,10 +151,10 @@ const fillHoles = (activities: Activity[]): Activity[] => {
 };
 
 const groupByWeeks = (
-  activities: Activity[],
+  activities: Activity[] = [],
   weekStart: WeekDay = 0,
 ): Week[] => {
-  if (activities.length === 0) {
+  if (!activities || activities.length === 0) {
     return [];
   }
 
@@ -246,7 +246,7 @@ export type ContributionGraphProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 export const ContributionGraph = ({
-  data,
+  data = [],
   blockMargin = 4,
   blockRadius = 2,
   blockSize = 12,
