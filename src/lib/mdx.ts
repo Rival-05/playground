@@ -10,7 +10,7 @@ export type BlogFrontmatter = {
     title: string;
     date: string;
     description: string;
-    image?: string;
+    coverImage?: string;
 };
 
 export type BlogPost = BlogFrontmatter & {
@@ -50,16 +50,16 @@ async function readContentFile(slug: string) {
     return matter(fileContent);
 }
 
-async function resolvePostImage(slug: string, image?: string) {
-    if (image) {
-        return image;
+async function resolvePostImage(slug: string, coverImage?: string) {
+    if (coverImage) {
+        return coverImage;
     }
 
-    const imageDirectory = path.join(process.cwd(), "public", "blog-images");
+    const imageDirectory = path.join(process.cwd(), "public", "images", "blog");
     const extensions = ["png", "jpg", "jpeg", "webp", "avif", "gif"];
 
     for (const extension of extensions) {
-        const assetPath = `/blog-images/${slug}.${extension}`;
+        const assetPath = `/images/blog/${slug}.${extension}`;
         const fullPath = path.join(imageDirectory, `${slug}.${extension}`);
 
         try {
@@ -93,7 +93,7 @@ export const getPostBySlug = cache(async function getPostBySlug(slug: string) {
         title: frontmatter.title,
         date: frontmatter.date,
         description: frontmatter.description,
-        image: await resolvePostImage(slug, frontmatter.image),
+        coverImage: await resolvePostImage(slug, frontmatter.coverImage),
         content,
         readingTime: calculateReadingTime(content),
         formattedDate: formatPostDate(frontmatter.date),

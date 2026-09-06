@@ -1,4 +1,5 @@
 import type { ComponentPropsWithoutRef } from "react";
+import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 
 const cx = (...c: (string | undefined)[]) => c.filter(Boolean).join(" ");
@@ -13,10 +14,10 @@ const listClassName =
   "my-6 ml-6 space-y-2 text-base leading-7 text-muted-foreground";
 
 const inlineCodeClassName =
-  "rounded-sm ring-1 ring-inset ring-black/10 dark:ring-white/15 bg-card px-1.5 py-0.5 text-sm text-foreground font-medium";
+  "rounded-sm ring-1 ring-inset ring-black/10 bg-card px-1.5 py-0.5 text-sm text-foreground font-medium";
 
 const preClassName =
-  "rounded-sm ring-1 ring-inset ring-black/10 dark:ring-white/15 bg-card px-3 py-4 text-sm text-foreground";
+  "rounded-sm ring-1 ring-inset ring-black/10 bg-card px-3 py-4 text-sm text-foreground";
 
 const tableWrapperClassName =
   "my-6 w-full overflow-x-auto rounded-lg border border-border ";
@@ -26,8 +27,16 @@ const tableClassName = "w-full text-sm";
 const cellClassName =
   "px-4 py-3 align-top text-foreground border-t border-border";
 
-const imageClassName =
-  "my-8 rounded-2xl border border-border/60 dark:border-white/10 shadow-sm";
+const imageClassName = "my-8 rounded-2xl border border-border/60 shadow-sm";
+
+type MdxImageProps = Omit<
+  ComponentPropsWithoutRef<"img">,
+  "height" | "src" | "width"
+> & {
+  height?: number | string;
+  src?: string;
+  width?: number | string;
+};
 
 export const mdxComponents = {
   h1: ({ className, ...props }: ComponentPropsWithoutRef<"h1">) => (
@@ -114,7 +123,7 @@ export const mdxComponents = {
   }: ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote
       className={cx(
-        "my-6 border-l-2 border-border/60 dark:border-white/10 pl-4 italic text-muted-foreground md:pl-6",
+        "my-6 border-l-2 border-border/60 pl-4 italic text-muted-foreground md:pl-6",
         className,
       )}
       {...props}
@@ -149,8 +158,16 @@ export const mdxComponents = {
     );
   },
 
-  img: ({ className, ...props }: ComponentPropsWithoutRef<"img">) => (
-    <img className={cx(imageClassName, className)} {...props} />
+  img: ({ className, alt, height, src, width, ...props }: MdxImageProps) => (
+    <Image
+      className={cx(imageClassName, className)}
+      src={src ?? ""}
+      alt={alt ?? ""}
+      width={typeof width === "number" ? width : 1200}
+      height={typeof height === "number" ? height : 630}
+      sizes="(max-width: 768px) 100vw, 768px"
+      {...props}
+    />
   ),
 
   table: ({ className, ...props }: ComponentPropsWithoutRef<"table">) => (

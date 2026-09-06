@@ -25,10 +25,12 @@ export default function Mail() {
     <Link
       onClick={handleClick}
       href="mailto:rivalo3.chat@gmail.com"
-      className=" font-medium text-foreground/80"
+      className=" font-normal text-foreground/70 hover:text-foreground"
+      data-cuelume-hover="tick"
+      data-cuelume-release
     >
       <SlotText
-        text={copied ? "Copied" : "mail me"}
+        text={copied ? "Copied !" : "mail me"}
         options={{
           direction: copied ? "up" : "down",
           color: copied ? "green" : undefined,

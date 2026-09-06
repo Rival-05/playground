@@ -1,6 +1,7 @@
 "use client";
 
-import { ThemeProvider } from "next-themes";
+import { bind } from "cuelume";
+import { useEffect } from "react";
 import type { ReactNode } from "react";
 
 type ProvidersProps = {
@@ -8,15 +9,9 @@ type ProvidersProps = {
 };
 
 export default function Providers({ children }: ProvidersProps) {
-  return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      enableColorScheme={false}
-      disableTransitionOnChange
-    >
-      {children}
-    </ThemeProvider>
-  );
+  useEffect(() => {
+    bind();
+  }, []);
+
+  return children;
 }

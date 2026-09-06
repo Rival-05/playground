@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 function formatTime(date: Date) {
   return new Intl.DateTimeFormat("en-US", {
@@ -14,26 +14,41 @@ function formatTime(date: Date) {
     .replace(" ", ""); // "5:38 PM" -> "5:38pm"
 }
 
+let currentTime = formatTime(new Date());
+let clockStarted = false;
+const listeners = new Set<() => void>();
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+
+  if (!clockStarted) {
+    clockStarted = true;
+    setInterval(() => {
+      currentTime = formatTime(new Date());
+      listeners.forEach((listener) => listener());
+    }, 1000 * 30);
+  }
+
+  return () => listeners.delete(listener);
+}
+
+function getSnapshot() {
+  return currentTime;
+}
+
+function getServerSnapshot() {
+  return "";
+}
+
 export default function LocalTime() {
-  const [time, setTime] = useState<string | null>(null);
+  const time = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-  useEffect(() => {
-    setTime(formatTime(new Date()));
-
-    const interval = setInterval(() => {
-      setTime(formatTime(new Date()));
-    }, 1000 * 30); // refresh every 30s, cheap and smooth enough
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // avoid hydration mismatch — render nothing until client mounts
   if (!time) return null;
 
   return (
-    <span className="text-sm font-normal tracking-wide text-muted-foreground py-1">
-      <span className="font-medium text-foreground/80">{time}</span> in
-      Bengaluru, India
+    <span className="text-muted-foreground py-1">
+      <span className="text-foreground/80">{time}</span>{" "}
+      <span className="font-light">in Bengaluru, India</span>
     </span>
   );
 }

@@ -6,8 +6,6 @@ import remarkGfm from "remark-gfm";
 import { Separator } from "@/components/ui/separator";
 import { mdxComponents } from "@/components/MDXComponents";
 import { getPostBySlug, getPostSlugs } from "@/lib/mdx";
-import { Button } from "@/components/ui/button";
-import ArrowLeft from "@/components/svgs/arrowleft";
 import Link from "next/link";
 
 type BlogPostPageProps = {
@@ -66,12 +64,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <article className={articleClassName}>
       <header className={headerClassName}>
-        <Button asChild variant="ghost">
-          <Link href="/blog" className="group inline-flex items-center gap-2">
-            <ArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
-            <span>Blogs</span>
-          </Link>
-        </Button>
+        <Link
+          href="/blog"
+          className="group inline-flex items-center gap-2 link-underline text-sm text-foreground tracking-wide"
+          data-cuelume-hover="tick"
+        >
+          <span>Back</span>
+        </Link>
         <div className="flex flex-col gap-1">
           <h2 className={headingClassName}>{post.title}</h2>
           <span className={descriptionClassName}>{post.description}</span>
@@ -86,7 +85,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </header>
       <Separator />
 
-      <div className="prose prose-neutral dark:prose-invert max-w-none prose-table:my-0">
+      <div className="prose prose-neutral max-w-none prose-table:my-0">
         <MDXRemote
           source={post.content}
           components={mdxComponents}

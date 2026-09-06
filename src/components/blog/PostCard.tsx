@@ -1,58 +1,65 @@
 "use client";
 
 import Link from "next/link";
-import { memo } from "react";
-import Arrowright from "@/components/svgs/arrowright";
 import type { BlogPostMeta } from "@/lib/mdx";
+import HoverImagePreview from "@/components/HoverImagePreview";
 
 type PostCardPost = Pick<
   BlogPostMeta,
-  "slug" | "title" | "description" | "formattedDate" | "readingTime" | "date"
+  "slug" | "title" | "readingTime" | "coverImage"
 >;
 
 type PostCardProps = {
   post: PostCardPost;
+  month: string;
+  isDimmed?: boolean;
+  onHoverStart?: () => void;
+  onHoverEnd?: () => void;
 };
 
 const cardClassName =
-  "group flex flex-col rounded-lg bg-card hover:bg-muted/60 shadow";
-const contentClassName = "flex items-center justify-between px-4 py-2";
-const detailsClassName = "space-y-3 py-2";
-const headingClassName = "text-lg font-medium text-foreground/80";
-const descriptionClassName = "text-base text-muted-foreground text-wrap";
+  "group flex items-center justify-between gap-4 tracking-wide transition-[opacity,filter] duration-300 ease-out";
+const headingClassName =
+  "font-normal text-sm text-foreground/80 transition-all duration-200 group-hover:translate-x-1 ";
 const metaClassName =
-  "flex flex-wrap items-center gap-3 text-sm text-muted-foreground";
-const separatorClassName = "h-1 w-1 shrink-0 rounded-full bg-foreground";
-const actionClassName =
-  "hidden md:inline-flex font-medium text-sm items-center gap-1 text-muted-foreground group-hover:text-foreground";
+  "font-light text-sm shrink-0 text-foreground/80 gap-1 flex items-center";
 
-function PostCard({ post }: PostCardProps) {
-  return (
+function PostCard({
+  post,
+  month,
+  isDimmed = false,
+  onHoverStart,
+  onHoverEnd,
+}: PostCardProps) {
+  const card = (
     <Link
       href={`/blog/${post.slug}`}
       aria-label={`Read ${post.title}`}
       className={cardClassName}
+      data-cuelume-hover="tick"
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
+      style={{
+        opacity: isDimmed ? 0.4 : 1,
+        filter: isDimmed ? "blur(3px)" : "blur(0px)",
+      }}
     >
-      <div className={contentClassName}>
-        <div className={detailsClassName}>
-          <div className="flex flex-col gap-0.5">
-            <h2 className={headingClassName}>{post.title}</h2>
-            <span className={descriptionClassName}>{post.description}</span>
-          </div>
-          <div className={metaClassName}>
-            <time dateTime={post.date}>{post.formattedDate}</time>
-            <div className={separatorClassName} aria-hidden="true" />
-            <span>{post.readingTime}</span>
-          </div>
-        </div>
-
-        <div className={actionClassName}>
-          Read
-          <Arrowright className="transition-transform group-hover:translate-x-1 duration-300" />
-        </div>
+      <h2 className={headingClassName}>{post.title}</h2>
+      <div className={metaClassName}>
+        <span>{month}</span>
+        <span aria-hidden="true">·</span>
+        <span>{post.readingTime}</span>
       </div>
     </Link>
   );
+
+  return post.coverImage ? (
+    <HoverImagePreview imageSrc={post.coverImage} imageAlt={post.title}>
+      {card}
+    </HoverImagePreview>
+  ) : (
+    card
+  );
 }
 
-export default memo(PostCard);
+export default PostCard;

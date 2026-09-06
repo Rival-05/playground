@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
-const siteUrl = "https://playgroundd.vercel.app";
+const siteUrl = "https://playgroundd.in";
 
 export const seo = {
     title: "Playground",
     description: "Sleek portfolio designed and built by Rajat Tripathi.",
     url: siteUrl,
-    image: "/playground-light.png",
+    image: "/avatar.svg",
 } as const;
 
 type SeoOptions = {

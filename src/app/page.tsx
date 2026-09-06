@@ -1,5 +1,4 @@
 import Hero from "@/components/landing/hero";
-import Contributions from "@/components/landing/contribution";
 import BlogPreview from "@/components/landing/blog";
 import Tools from "@/components/landing/tools";
 import Footer from "@/components/common/footer";
@@ -9,15 +8,16 @@ import { getLastCommitDate } from "@/lib/getlastUpdated";
 
 export const generateMetadata = () => createMetadata({ path: "/" });
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
       <Hero />
-      <Contributions />
+      <Separator />
       <BlogPreview />
+      <Separator />
       <Tools />
       <Separator />
-      <Footer lastUpdatedDate={getLastCommitDate()} />
+      <Footer lastUpdatedDate={await getLastCommitDate()} />
     </div>
   );
 }

@@ -1,13 +1,13 @@
 export const tools = [
     {
         name: "Requestly",
-        description: "helps debugging apis faster, lightwieght and opensource.",
+        description: "helps debugging apis faster, lightweight and opensource.",
         link: "https://requestly.com/",
     },
     {
-        name: "chatGPT",
+        name: "claude",
         description: "go to for debugging and learning faster.",
-        link: "https://chat.openai.com/",
+        link: "https://claude.ai/",
     },
     {
         name: "shadcn/ui",
@@ -25,9 +25,9 @@ export const tools = [
         link: "https://recordly.dev/",
     },
     {
-        name: "Audio haptics",
+        name: "cuelume",
         description: "provides sound effects for micro-interactions.",
-        link: "https://audio.raphaelsalaja.com/",
+        link: "https://cuelume.dev/",
     },
     {
         name: "metadata-gen",

@@ -16,11 +16,11 @@ export interface HoverPreviewConfig {
 export const hoverPreviews: Record<string, HoverPreviewConfig> = {
     music: {
         type: "music",
-        href: "https://open.spotify.com/track/5hx7w26Zi3zafMgvMTUqF6",
+        href: "https://open.spotify.com/track/56sxN1yKg1dgOZXBcAHkJG",
         platformLabel: "Spotify",
         data: {
-            title: "SNAP",
-            subtitle: "Rosa Linn",
+            title: "Gone Gone Gone",
+            subtitle: "Philip Phillips",
             image: "/song.png",
         } as MusicPreviewData,
     },

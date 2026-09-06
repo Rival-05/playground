@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import { hoverPreviews, MusicPreviewData } from "@/config/hoverPreview";
 import { getAdaptiveCardBackground } from "@/components/HoverCard/imageColor";
 
@@ -115,17 +116,20 @@ const MusicPreviewCard = ({
 
   return (
     <div
-      className="hover-preview-card w-72 overflow-hidden rounded-xl ring-1 ring-inset ring-black/10 dark:ring-white/10 p-4 shadow-2xl"
+      className="hover-preview-card w-72 overflow-hidden rounded-xl ring-1 ring-inset ring-black/10 p-4 shadow-2xl"
       style={{
         background: bgGradient,
       }}
     >
       <div className="flex gap-4">
         <div className="h-24 w-24 shrink-0 overflow-hidden rounded-lg shadow-lg">
-          <img
+          <Image
             ref={imgRef}
             src={data.image}
             alt={data.title}
+            width={96}
+            height={96}
+            sizes="96px"
             className="h-full w-full object-cover"
             crossOrigin="anonymous"
           />
