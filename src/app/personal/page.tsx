@@ -23,7 +23,8 @@ function PersonalCard({
           alt={title}
           fill
           sizes="224px"
-          className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+          loading="eager"
         />
       </div>
       <div className="space-y-1">

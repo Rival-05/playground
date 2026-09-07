@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/animations/reveal";
+import { PhotoGrid } from "@/components/photography/photo-grid";
 import { photography } from "@/config/photography";
 
 export const metadata = {
@@ -29,29 +29,9 @@ export default function PhotographyPage() {
           </div>
 
           {photography.length > 0 ? (
-            <div className="columns-1 gap-4 sm:columns-2">
-              {photography.map((photo, index) => (
-                <figure
-                  key={`${photo.src}-${index}`}
-                  className="group mb-4 break-inside-avoid overflow-hidden rounded-lg border border-border/60 bg-muted/20"
-                >
-                  <div className="relative aspect-4/5 overflow-hidden">
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      priority={index < 2}
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-                    />
-                  </div>
-                  {photo.caption && (
-                    <figcaption className="px-3 py-2 text-sm font-light text-muted-foreground">
-                      {photo.caption}
-                    </figcaption>
-                  )}
-                </figure>
-              ))}
+            // full-bleed: breaks out of the centered container to use the full viewport width
+            <div className="relative left-1/2 right-1/2 mx-[-50vw] w-screen px-4 sm:px-8">
+              <PhotoGrid photos={photography} />
             </div>
           ) : (
             <div className="flex min-h-48 items-center justify-center rounded-lg border border-dashed border-border/70 px-6 py-12 text-center">

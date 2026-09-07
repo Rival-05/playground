@@ -49,7 +49,7 @@ export default function Hero() {
         </h2>
 
         <h2 className="font-light text-muted-foreground">
-          ~ Inquisitive about astrodynamics.
+          ~ Inquisitive about aerospace.
         </h2>
 
         <h2 className="font-light text-muted-foreground">
