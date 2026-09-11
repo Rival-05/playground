@@ -2,16 +2,11 @@
 
 import { bind } from "cuelume";
 import { useEffect } from "react";
-import type { ReactNode } from "react";
 
-type ProvidersProps = {
-  children: ReactNode;
-};
-
-export default function Providers({ children }: ProvidersProps) {
+export default function Providers() {
   useEffect(() => {
     bind();
   }, []);
 
-  return children;
+  return null;
 }

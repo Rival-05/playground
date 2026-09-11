@@ -26,8 +26,8 @@ export default function HoverImagePreview({
       {children}
       <div
         aria-hidden="true"
-        className={`pointer-events-none absolute left-0 top-full z-50 mt-2 h-32 w-64 overflow-hidden rounded-lg bg-muted shadow-2xl ring-1 ring-border/60 transition-all duration-300 ease-out ${
-          isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+        className={`pointer-events-none absolute right-0 top-full z-50 mt-2 h-32 w-64 overflow-hidden rounded-lg bg-muted shadow-2xl ring-1 ring-border/60 transition-all duration-300 ease-out ${
+          isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
         }`}
       >
         {isVisible && (

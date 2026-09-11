@@ -11,3 +11,11 @@ model VisitorCounter {
   count     Int      @default(0)
   updatedAt DateTime @updatedAt
 }
+
+model Shoutout {
+  id        Int      @id @default(autoincrement())
+  message   String
+  handle    String?
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+} 

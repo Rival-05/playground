@@ -53,11 +53,10 @@ export default function RootLayout({
       className={`${geistSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Providers>
-          <Container>
-            <main className="w-full">{children}</main>
-          </Container>
-        </Providers>
+        <Providers />
+        <Container>
+          <main className="w-full">{children}</main>
+        </Container>
         <Analytics /> <SpeedInsights />
       </body>
     </html>

@@ -1,7 +1,17 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { Reveal } from "@/components/animations/reveal";
-import { PhotoGrid } from "@/components/photography/photo-grid";
 import { photography } from "@/config/photography";
+
+const PhotoGrid = dynamic(
+  () =>
+    import("@/components/photography/photo-grid").then(
+      (module) => module.PhotoGrid,
+    ),
+  {
+    loading: () => <div className="min-h-96 w-full" aria-hidden="true" />,
+  },
+);
 
 export const metadata = {
   title: "Photography",

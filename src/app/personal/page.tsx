@@ -1,47 +1,91 @@
 import Link from "next/link";
-import Image from "next/image";
 import { books } from "@/config/books";
 import { movies } from "@/config/movies";
+import { resources } from "@/config/resources";
 import { Reveal } from "@/components/animations/reveal";
+import HoverImagePreview from "@/components/HoverImagePreview";
+import ShoutoutForm from "@/components/personal/ShoutoutForm";
 
-function PersonalCard({
+const resourceTagColors: Record<string, string> = {
+  dsa: "bg-blue-500/10 text-blue-600 ring-blue-500/20 ",
+  "system design": "bg-purple-500/10 text-purple-600 ring-purple-500/20 ",
+  blog: "bg-orange-500/10 text-orange-600 ring-orange-500/20 ",
+  "machine learning": "bg-green-500/10 text-green-600 ring-green-500/20 ",
+  "research paper": "bg-pink-500/10 text-pink-600 ring-pink-500/20 ",
+  github: "bg-gray-900/10 text-gray-700 ring-gray-900/20 ",
+  course: "bg-yellow-500/10 text-yellow-600 ring-yellow-500/20 ",
+  science: "bg-cyan-500/10 text-cyan-600 ring-cyan-500/20 ",
+  youtube: "bg-red-500/10 text-red-600 ring-red-500/20 ",
+};
+
+function PickRow({
   title,
-  detail,
+  category,
   imageSrc,
   link,
+  isNew,
+  resourceType,
+  bookType,
 }: {
   title: string;
-  detail?: string;
-  imageSrc: string;
+  category?: string;
+  imageSrc?: string;
   link?: string;
+  isNew?: boolean;
+  resourceType?: string | string[];
+  bookType?: string | string[];
 }) {
-  const content = (
-    <div className="group space-y-3" data-cuelume-hover="tick">
-      <div className="relative h-32 w-56 overflow-hidden rounded-lg bg-muted ring-1 ring-border/60">
-        <Image
-          src={imageSrc}
-          alt={title}
-          fill
-          sizes="224px"
-          className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
-          loading="eager"
-        />
-      </div>
-      <div className="space-y-1">
-        <h2 className="text-[15px] font-normal text-foreground/80">{title}</h2>
-        {detail && (
-          <p className="text-sm font-light leading-6 text-muted-foreground">
-            {detail}
-          </p>
+  const tagTypes = resourceType ?? bookType;
+  const tags = Array.isArray(tagTypes)
+    ? tagTypes
+    : tagTypes
+      ? tagTypes.split(",").map((tag) => tag.trim())
+      : [];
+
+  const row = (
+    <div
+      className="group flex items-center justify-between gap-4 py-1.5 tracking-wide"
+      data-cuelume-hover="tick"
+    >
+      <div className="flex min-w-0 items-center gap-2">
+        <span className="truncate font-normal text-sm text-foreground/80 transition-all duration-200 group-hover:translate-x-1">
+          {title}
+        </span>
+        {isNew && (
+          <span className="shrink-0 rounded-sm bg-amber-500/10 px-2 py-0.5 text-[11px] font-medium text-amber-600 ring-amber-500/20">
+            New
+          </span>
         )}
+        {tags.map((tag) => (
+          <span
+            key={tag}
+            className={`shrink-0 rounded-sm px-1.5 py-px text-[11px] font-medium ${resourceTagColors[tag] ?? "bg-gray-500"}`}
+          >
+            {tag}
+          </span>
+        ))}
       </div>
+      {category && (
+        <span className="shrink-0 font-light text-sm text-muted-foreground">
+          {"// "}
+          {category}
+        </span>
+      )}
     </div>
   );
 
-  return link ? (
+  const content = link ? (
     <Link href={link} target="_blank" rel="noopener noreferrer">
-      {content}
+      {row}
     </Link>
+  ) : (
+    row
+  );
+
+  return imageSrc ? (
+    <HoverImagePreview imageSrc={imageSrc} imageAlt={title}>
+      {content}
+    </HoverImagePreview>
   ) : (
     content
   );
@@ -49,12 +93,12 @@ function PersonalCard({
 
 export const metadata = {
   title: "Personal",
-  description: "Movies and books I have enjoyed.",
+  description: "Books, movies, and important technical resources.",
 };
 
 export default function PersonalPage() {
   return (
-    <section className="w-full space-y-10 py-4">
+    <section className="w-full space-y-4 py-4">
       <Link
         href="/"
         className="link-underline text-sm tracking-wide text-foreground"
@@ -64,16 +108,24 @@ export default function PersonalPage() {
       </Link>
 
       <Reveal>
-        <section className="w-full space-y-6 tracking-wide py-2 md:py-4">
-          <h1 className="text-base font-medium text-foreground">Movies</h1>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3 md:gap-6">
-            {movies.map((movie) => (
-              <PersonalCard
-                key={movie.title}
-                title={movie.title}
-                detail={movie.note}
-                imageSrc={movie.posterImage}
-                link={movie.link}
+        <ShoutoutForm />
+      </Reveal>
+
+      <Reveal>
+        <section className="w-full space-y-3 tracking-wide py-2 md:py-4">
+          <h2 className="text-base font-medium text-foreground">
+            Important Resources
+          </h2>
+          <div className="flex flex-col">
+            {resources.map((resource) => (
+              <PickRow
+                key={resource.title}
+                title={resource.title}
+                link={resource.link}
+                isNew={resource.isNew}
+                category={resource.category}
+                imageSrc={resource.imageSrc}
+                resourceType={resource.type}
               />
             ))}
           </div>
@@ -81,20 +133,48 @@ export default function PersonalPage() {
       </Reveal>
 
       <Reveal>
-        <section className="w-full space-y-6 tracking-wide py-2 md:py-4">
+        <section className="w-full space-y-3 tracking-wide py-2 md:py-4">
           <h2 className="text-base font-medium text-foreground">Books</h2>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 md:gap-6">
+          <div className="flex flex-col">
             {books.map((book) => (
-              <PersonalCard
+              <PickRow
                 key={book.title}
                 title={book.title}
-                detail={book.note ?? `by ${book.author}`}
+                category={book.author}
                 imageSrc={book.coverImage}
                 link={book.link}
+                isNew={book.isNew}
+                bookType={book.bookType}
               />
             ))}
           </div>
         </section>
+      </Reveal>
+
+      <Reveal>
+        <section className="w-full space-y-3 tracking-wide py-2 md:py-4">
+          <h1 className="text-base font-medium text-foreground">Movies</h1>
+          <div className="flex flex-col">
+            {movies.map((movie) => (
+              <PickRow
+                key={movie.title}
+                title={movie.title}
+                category={movie.note ?? "Movie"}
+                imageSrc={movie.posterImage}
+                link={movie.link}
+                isNew={movie.isNew}
+              />
+            ))}
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <p className="max-w-lg text-sm font-light leading-6 text-muted-foreground">
+          ~ A running log of technical resources, books and movies that stuck
+          with me — hover a title to see it, click to go find it. <br />
+          Updated whenever something&apos;s worth passing on.
+        </p>
       </Reveal>
     </section>
   );

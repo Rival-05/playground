@@ -25,15 +25,29 @@ export default function VisitorCount() {
       }
     }
 
-    loadVisitor();
-    return () => controller.abort();
+    if ("requestIdleCallback" in window) {
+      const idleId = window.requestIdleCallback(() => void loadVisitor(), {
+        timeout: 2000,
+      });
+      return () => {
+        window.cancelIdleCallback(idleId);
+        controller.abort();
+      };
+    }
+
+    const timeoutId = setTimeout(() => void loadVisitor(), 0);
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      controller.abort();
+    };
   }, []);
 
   if (!message) return null;
 
   return (
     <h3 className="flex gap-1 text-muted-foreground">
-      You&apos;re the <span className="font-medium text-foreground/80">{message}</span>
+      You&apos;re the{" "}
+      <span className="font-medium text-foreground/80">{message}</span>
     </h3>
   );
 }

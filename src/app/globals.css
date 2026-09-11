@@ -101,6 +101,38 @@ body {
   font-family: var(--font-geist-sans), sans-serif;
 }
 
+html {
+  scrollbar-color: gray transparent;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+}
+
+* {
+  scrollbar-color: gray transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: gray;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, gray 78%, var(--foreground));
+  background-clip: content-box;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
