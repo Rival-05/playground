@@ -2,6 +2,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Reveal } from "@/components/animations/reveal";
 import { photography } from "@/config/photography";
+import { createMetadata } from "@/config/seo";
 
 const PhotoGrid = dynamic(
   () =>
@@ -13,10 +14,14 @@ const PhotoGrid = dynamic(
   },
 );
 
-export const metadata = {
-  title: "Photography",
-  description: "A small collection of photographs I have captured.",
-};
+export const generateMetadata = () =>
+  createMetadata({
+    title: "Photography",
+    description:
+      "A small collection of photographs captured by Rajat Tripathi.",
+    path: "/photography",
+    image: "/photography.png",
+  });
 
 export default function PhotographyPage() {
   return (

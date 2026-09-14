@@ -49,10 +49,8 @@ export function Reveal({
       className={cn(className)}
       style={{
         opacity: isVisible ? 1 : 0,
-        filter: isVisible ? "blur(0)" : "blur(4px)",
-        transform: isVisible
-          ? "translate3d(0, 0, 0)"
-          : "translate3d(0, 18px, 0)",
+        filter: isVisible ? "none" : "blur(4px)",
+        transform: isVisible ? "none" : "translate3d(0, 18px, 0)",
         transition: `opacity 600ms ease-out ${delay}s, filter 600ms ease-out ${delay}s, transform 600ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`,
       }}
     >

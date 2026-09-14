@@ -1,13 +1,15 @@
-import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/mdx";
 import BlogList, { type YearGroup } from "@/components/blog/BlogList";
 import Link from "next/link";
 import { format } from "date-fns";
+import { createMetadata } from "@/config/seo";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Interesting and technical writing.",
-};
+export const generateMetadata = () =>
+  createMetadata({
+    title: "Blog",
+    description: "Technical writing and notes by Rajat Tripathi.",
+    path: "/blog",
+  });
 
 export default async function BlogPage() {
   const posts = await getAllPosts();

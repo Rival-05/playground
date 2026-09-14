@@ -6,7 +6,10 @@ import remarkGfm from "remark-gfm";
 import { Separator } from "@/components/ui/separator";
 import { mdxComponents } from "@/components/MDXComponents";
 import { getPostBySlug, getPostSlugs } from "@/lib/mdx";
+import BlogRail from "@/components/blog/BlogRail";
 import Link from "next/link";
+import { absoluteUrl, createMetadata, seo } from "@/config/seo";
+import JsonLd from "@/components/seo/JsonLd";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -14,7 +17,8 @@ type BlogPostPageProps = {
   }>;
 };
 
-const articleClassName = "w-full space-y-8 py-10 sm:py-12 lg:py-16";
+const articleClassName =
+  "w-full space-y-8 pb-24 pt-10 sm:py-12 lg:py-16 lg:pb-16";
 const headerClassName = "space-y-6";
 const headingClassName =
   "text-2xl font-medium tracking-tight text-foreground md:text-3xl";
@@ -36,14 +40,19 @@ export async function generateMetadata({
   try {
     const post = await getPostBySlug(slug);
 
-    return {
+    return createMetadata({
       title: post.title,
       description: post.description,
-    };
+      path: `/blog/${slug}`,
+      image: post.coverImage ?? seo.image,
+      type: "article",
+    });
   } catch {
-    return {
+    return createMetadata({
       title: "Post not found",
-    };
+      description: "The requested blog post could not be found.",
+      path: `/blog/${slug}`,
+    });
   }
 }
 
@@ -62,40 +71,60 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <article className={articleClassName}>
-      <header className={headerClassName}>
-        <Link
-          href="/blog"
-          className="group inline-flex items-center gap-2 link-underline text-sm text-foreground tracking-wide"
-          data-cuelume-hover="tick"
-        >
-          <span>Back</span>
-        </Link>
-        <div className="flex flex-col gap-1">
-          <h2 className={headingClassName}>{post.title}</h2>
-          <span className={descriptionClassName}>{post.description}</span>
-        </div>
-        <div className={metaClassName}>
-          <time dateTime={post.date}>
-            {format(new Date(post.date), "MMMM d, yyyy")}
-          </time>
-          <span aria-hidden="true" className={separatorClassName} />
-          <span>{post.readingTime}</span>
-        </div>
-      </header>
-      <Separator />
+    <>
+      <article className={articleClassName}>
+        <header className={headerClassName}>
+          <Link
+            href="/blog"
+            className="group inline-flex items-center gap-2 link-underline text-sm text-foreground tracking-wide"
+            data-cuelume-hover="tick"
+          >
+            <span>Back</span>
+          </Link>
+          <div className="flex flex-col gap-1">
+            <h1 className={headingClassName}>{post.title}</h1>
+            <span className={descriptionClassName}>{post.description}</span>
+          </div>
+          <div className={metaClassName}>
+            <time dateTime={post.date}>
+              {format(new Date(post.date), "MMMM d, yyyy")}
+            </time>
+            <span aria-hidden="true" className={separatorClassName} />
+            <span>{post.readingTime}</span>
+          </div>
+        </header>
+        <Separator />
+        <BlogRail />
 
-      <div className="prose prose-neutral max-w-none prose-table:my-0">
-        <MDXRemote
-          source={post.content}
-          components={mdxComponents}
-          options={{
-            mdxOptions: {
-              remarkPlugins: [remarkGfm],
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.title,
+            datePublished: post.date,
+            description: post.description,
+            author: {
+              "@type": "Person",
+              name: "Rajat Tripathi",
+              url: seo.url,
             },
+            image: absoluteUrl(post.coverImage ?? seo.image),
+            mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
           }}
         />
-      </div>
-    </article>
+
+        <div className="prose prose-neutral max-w-none prose-table:my-0">
+          <MDXRemote
+            source={post.content}
+            components={mdxComponents}
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+              },
+            }}
+          />
+        </div>
+      </article>
+    </>
   );
 }

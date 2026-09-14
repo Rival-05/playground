@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { X } from "lucide-react";
+import ArrowLeft from "@/components/svgs/arrowleft";
 
 type Step = "message" | "handle" | "done";
 
@@ -76,6 +78,11 @@ export default function ShoutoutForm() {
     }
   }
 
+  function goBackToMessage() {
+    setError(null);
+    setStep("message");
+  }
+
   if (step === "done") {
     return (
       <div className="py-2 md:py-4 text-sm font-light text-muted-foreground">
@@ -90,31 +97,64 @@ export default function ShoutoutForm() {
         {step === "message" ? (
           <>
             <span className="shrink-0">~ liked the content?</span>
-            <input
-              type="text"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={handleMessageKeyDown}
-              placeholder="leave a thought..."
-              maxLength={500}
-              autoFocus
-              className="min-w-0 flex-1 border-b border-border/60 bg-transparent px-1 py-1 font-light text-foreground placeholder:text-muted-foreground/70 outline-none focus:border-foreground/50"
-            />
+            <div className="relative min-w-0 flex-1">
+              <input
+                type="text"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={handleMessageKeyDown}
+                placeholder="leave a thought..."
+                maxLength={500}
+                autoFocus
+                className="min-w-0 w-full border-b border-border/60 bg-transparent px-1 py-1 pr-7 font-light text-foreground placeholder:text-muted-foreground/70 outline-none focus:border-foreground/50"
+              />
+              <button
+                type="button"
+                aria-label="Clear comment"
+                title="Clear comment"
+                onClick={() => setMessage("")}
+                className="absolute cursor-pointer right-0 top-1/2 -translate-y-1/2 p-1 text-muted-foreground/70 transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none"
+              >
+                <X aria-hidden="true" className="size-3.5" />
+              </button>
+            </div>
           </>
         ) : (
           <>
-            <span className="shrink-0">who are you?</span>
-            <input
-              type="text"
-              value={handle}
-              onChange={(e) => setHandle(e.target.value)}
-              onKeyDown={handleHandleKeyDown}
-              placeholder="@twitter handle or your name"
-              maxLength={120}
-              autoFocus
+            <button
+              type="button"
+              aria-label="Edit comment"
+              title="Edit comment"
+              onClick={goBackToMessage}
               disabled={isSubmitting}
-              className="min-w-0 flex-1 border-b border-border/60 bg-transparent px-1 py-1 font-light text-foreground placeholder:text-muted-foreground/70 outline-none focus:border-foreground/50 disabled:opacity-60"
-            />
+              className="shrink-0 p-1 cursor-pointer text-muted-foreground/70 transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none disabled:opacity-60"
+            >
+              <ArrowLeft aria-hidden="true" />
+            </button>
+            <span className="shrink-0">who are you?</span>
+            <div className="relative min-w-0 flex-1">
+              <input
+                type="text"
+                value={handle}
+                onChange={(e) => setHandle(e.target.value)}
+                onKeyDown={handleHandleKeyDown}
+                placeholder="@twitter handle or your name"
+                maxLength={120}
+                autoFocus
+                disabled={isSubmitting}
+                className="min-w-0 w-full border-b border-border/60 bg-transparent px-1 py-1 pr-7 font-light text-foreground placeholder:text-muted-foreground/70 outline-none focus:border-foreground/50 disabled:opacity-60"
+              />
+              <button
+                type="button"
+                aria-label="Clear name"
+                title="Clear name"
+                onClick={() => setHandle("")}
+                disabled={isSubmitting}
+                className="absolute cursor-pointer right-0 top-1/2 -translate-y-1/2 p-1 text-muted-foreground/70 transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none disabled:opacity-60"
+              >
+                <X aria-hidden="true" className="size-3.5" />
+              </button>
+            </div>
           </>
         )}
       </div>

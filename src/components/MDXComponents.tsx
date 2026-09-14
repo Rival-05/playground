@@ -162,7 +162,7 @@ export const mdxComponents = {
     <Image
       className={cx(imageClassName, className)}
       src={src ?? ""}
-      alt={alt ?? ""}
+      alt={alt ?? "Blog post image"}
       width={typeof width === "number" ? width : 1200}
       height={typeof height === "number" ? height : 630}
       sizes="(max-width: 768px) 100vw, 768px"

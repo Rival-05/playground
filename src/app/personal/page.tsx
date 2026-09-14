@@ -5,6 +5,8 @@ import { resources } from "@/config/resources";
 import { Reveal } from "@/components/animations/reveal";
 import HoverImagePreview from "@/components/HoverImagePreview";
 import ShoutoutForm from "@/components/personal/ShoutoutForm";
+import { ScrollFadeHint } from "@/components/common/ScrollFadeHint";
+import { createMetadata } from "@/config/seo";
 
 const resourceTagColors: Record<string, string> = {
   dsa: "bg-blue-500/10 text-blue-600 ring-blue-500/20 ",
@@ -44,11 +46,11 @@ function PickRow({
 
   const row = (
     <div
-      className="group flex items-center justify-between gap-4 py-1.5 tracking-wide"
+      className="group flex flex-col items-start gap-1 py-1.5 tracking-wide sm:flex-row sm:items-center sm:justify-between sm:gap-4"
       data-cuelume-hover="tick"
     >
-      <div className="flex min-w-0 items-center gap-2">
-        <span className="truncate font-normal text-sm text-foreground/80 transition-all duration-200 group-hover:translate-x-1">
+      <div className="flex min-w-0 w-full flex-wrap items-center gap-2 sm:flex-1">
+        <span className="max-w-full wrap-break-word font-normal text-sm text-foreground/80 transition-all duration-200 group-hover:translate-x-1 sm:min-w-0 sm:truncate">
           {title}
         </span>
         {isNew && (
@@ -66,7 +68,7 @@ function PickRow({
         ))}
       </div>
       {category && (
-        <span className="shrink-0 font-light text-sm text-muted-foreground">
+        <span className="w-full wrap-break-word font-light text-sm text-muted-foreground sm:w-auto sm:shrink-0 sm:text-right">
           {"// "}
           {category}
         </span>
@@ -91,10 +93,14 @@ function PickRow({
   );
 }
 
-export const metadata = {
-  title: "Personal",
-  description: "Books, movies, and important technical resources.",
-};
+export const generateMetadata = () =>
+  createMetadata({
+    title: "Picks",
+    description:
+      "Books, movies, and useful resources curated by Rajat Tripathi.",
+    path: "/personal",
+    image: "/picks.png",
+  });
 
 export default function PersonalPage() {
   return (
@@ -133,7 +139,10 @@ export default function PersonalPage() {
       </Reveal>
 
       <Reveal>
-        <section className="w-full space-y-3 tracking-wide py-2 md:py-4">
+        <section
+          id="books"
+          className="w-full space-y-3 tracking-wide py-2 md:py-4"
+        >
           <h2 className="text-base font-medium text-foreground">Books</h2>
           <div className="flex flex-col">
             {books.map((book) => (
@@ -152,7 +161,10 @@ export default function PersonalPage() {
       </Reveal>
 
       <Reveal>
-        <section className="w-full space-y-3 tracking-wide py-2 md:py-4">
+        <section
+          id="movies"
+          className="w-full space-y-3 tracking-wide py-2 md:py-4"
+        >
           <h1 className="text-base font-medium text-foreground">Movies</h1>
           <div className="flex flex-col">
             {movies.map((movie) => (
@@ -176,6 +188,7 @@ export default function PersonalPage() {
           Updated whenever something&apos;s worth passing on.
         </p>
       </Reveal>
+      <ScrollFadeHint />
     </section>
   );
 }

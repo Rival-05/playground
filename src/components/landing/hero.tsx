@@ -1,4 +1,3 @@
-import HoverPreview from "@/components/HoverCard/HoverPreview";
 import Mail from "@/components/landing/mail";
 import { Reveal } from "@/components/animations/reveal";
 import Link from "next/link";
@@ -36,20 +35,33 @@ export default function Hero() {
           </div>
         </div>
 
+        <h1 className="font-light text-muted-foreground">
+          Hi, I&apos;m a software engineer. I designs and builds web products.
+        </h1>
+
         <h2 className="font-light text-muted-foreground">
-          Hi, I&apos;m a software developer who designs and builds modern web
-          products.
+          Besides, I listen to music, read{" "}
+          <Link
+            href="/personal#books"
+            className="link-underline"
+            data-cuelume-hover="tick"
+          >
+            books
+          </Link>
+          , and watch{" "}
+          <Link
+            href="/personal#movies"
+            className="link-underline"
+            data-cuelume-hover="tick"
+          >
+            movies
+          </Link>
+          . I also play sports whenever I get to and lately, learning
+          photography.
         </h2>
 
         <h2 className="font-light text-muted-foreground">
-          Besides, I listen to{" "}
-          <HoverPreview previewKey="music">music</HoverPreview> and watch{" "}
-          <HoverPreview previewKey="movies">movies.</HoverPreview> I also play
-          sports whenever I get to and lately, learning photography.
-        </h2>
-
-        <h2 className="font-light text-muted-foreground">
-          ~ Inquisitive about aerospace.
+          ~ inquisitive about aerospace.
         </h2>
 
         <h2 className="font-light text-muted-foreground">

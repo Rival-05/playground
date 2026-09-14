@@ -5,8 +5,14 @@ import Footer from "@/components/common/footer";
 import { Separator } from "@/components/ui/separator";
 import { createMetadata } from "@/config/seo";
 import { getLastCommitDate } from "@/lib/getlastUpdated";
+import { ScrollFadeHint } from "@/components/common/ScrollFadeHint";
 
-export const generateMetadata = () => createMetadata({ path: "/" });
+export const generateMetadata = () =>
+  createMetadata({
+    title: "Rajat Tripathi",
+    path: "/",
+    image: "/home.png",
+  });
 
 export default async function Home() {
   return (
@@ -18,6 +24,7 @@ export default async function Home() {
       <Tools />
       <Separator />
       <Footer lastUpdatedDate={await getLastCommitDate()} />
+      <ScrollFadeHint />
     </div>
   );
 }

@@ -19,14 +19,14 @@ export default function HoverImagePreview({
 
   return (
     <div
-      className="relative"
+      className={`relative ${isVisible ? "z-50" : "z-0"}`}
       onMouseEnter={() => setIsVisible(true)}
       onMouseLeave={() => setIsVisible(false)}
     >
       {children}
       <div
         aria-hidden="true"
-        className={`pointer-events-none absolute right-0 top-full z-50 mt-2 h-32 w-64 overflow-hidden rounded-lg bg-muted shadow-2xl ring-1 ring-border/60 transition-all duration-300 ease-out ${
+        className={`pointer-events-none absolute right-0 top-full z-50 mt-2 hidden h-32 w-64 overflow-hidden rounded-lg bg-muted shadow-2xl ring-1 ring-border/60 transition-all duration-300 ease-out sm:block ${
           isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
         }`}
       >

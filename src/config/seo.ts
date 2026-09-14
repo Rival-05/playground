@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 const siteUrl = "https://playgroundd.in";
 
 export const seo = {
-    title: "Playground",
-    description: "Sleek portfolio designed and built by Rajat Tripathi.",
+    title: "Rajat Tripathi",
+    description: "Rajat Tripathi's personal site, writing, photography, and curated picks.",
     url: siteUrl,
     image: "/avatar.svg",
 } as const;
@@ -28,7 +28,7 @@ export function createMetadata({
     const imageUrl = new URL(image, seo.url).toString();
 
     return {
-        title,
+        title: title === seo.title ? { absolute: title } : title,
         description,
         alternates: {
             canonical: url,
@@ -54,4 +54,8 @@ export function createMetadata({
             images: [imageUrl],
         },
     };
+}
+
+export function absoluteUrl(path: string) {
+    return new URL(path, seo.url).toString();
 }
