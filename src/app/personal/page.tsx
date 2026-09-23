@@ -18,6 +18,8 @@ const resourceTagColors: Record<string, string> = {
   course: "bg-yellow-500/10 text-yellow-600 ring-yellow-500/20 ",
   science: "bg-cyan-500/10 text-cyan-600 ring-cyan-500/20 ",
   youtube: "bg-red-500/10 text-red-600 ring-red-500/20 ",
+  newsletter: "bg-gray-500/10 text-gray-600 ring-gray-500/20 ",
+  map: "bg-teal-500/10 text-teal-600 ring-teal-500/20 ",
 };
 
 function PickRow({

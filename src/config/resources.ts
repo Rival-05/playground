@@ -9,6 +9,42 @@ export type Resource = {
 
 export const resources: Resource[] = [
     {
+        title: "Striver SDE Sheet",
+        link: "https://takeuforward.org/prep-hub/strivers-180-master-dsa-patterns",
+        type: "dsa",
+        category: "dsa questions",
+        imageSrc: "/images/resources/striver_sde_sheet.png",
+    },
+    {
+        title: "Bengaluru Startup Map",
+        link: "https://www.bangalorestartupmap.com/",
+        type: "map",
+        category: "startup ecosystem in blr",
+        imageSrc: "/images/resources/bengaluru_startup_map.png",
+    },
+    {
+        title: "The BLR Circle",
+        link: "https://theblrcircle.beehiiv.com/",
+        type: "newsletter",
+        category: "latest tech news and updates in blr",
+        imageSrc: "/images/resources/the_blr_circle.png",
+    },
+    {
+        title: "fanout.sh",
+        link: "https://fanout.sh/",
+        type: "blog, system design, research paper, machine learning",
+        category: "backend engineering",
+        imageSrc: "/images/resources/fanout.png",
+        isNew: true,
+    },
+    {
+        title: "Backend from first principles.",
+        type: "youtube",
+        link: "https://www.youtube.com/playlist?list=PLui3EUkuMTPgZcV0QhQrOcwMPcBCcd_Q1",
+        category: "fundamentals of backend engineering",
+        imageSrc: "/images/resources/backend_from_first_principles.png",
+    },
+    {
         title: "How to start a startup",
         type: " youtube",
         link: "https://www.youtube.com/watch?v=CBYhVcO4WgI&list=PL5q_lef6zVkaTY_cT1k7qFNF2TidHCe-1",
@@ -35,6 +71,12 @@ export const resources: Resource[] = [
         type: "research paper",
         link: "https://raft.github.io/raft.pdf",
         category: "raft consensus algorithm",
+    },
+    {
+        title: "phys.org",
+        type: "science",
+        link: "https://phys.org/",
+        category: "science news",
     },
     {
         title: "Attention is all you need",

@@ -86,7 +86,7 @@ export default function ShoutoutForm() {
   if (step === "done") {
     return (
       <div className="py-2 md:py-4 text-sm font-light text-muted-foreground">
-        ~ thanks for that.
+        ~ thanks for that!
       </div>
     );
   }
@@ -96,7 +96,7 @@ export default function ShoutoutForm() {
       <div className="flex items-center gap-2 text-sm text-foreground/80">
         {step === "message" ? (
           <>
-            <span className="shrink-0">~ liked the content?</span>
+            <span className="shrink-0">~ liked it?</span>
             <div className="relative min-w-0 flex-1">
               <input
                 type="text"
