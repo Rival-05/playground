@@ -90,6 +90,7 @@
   --color-brand: var(--brand);
   --color-brand-dev: var(--brand-dev);
   --font-heading: var(--font-geist-sans);
+  --font-display: var(--font-instrument-serif);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --radius-2xl: calc(var(--radius) * 1.8);

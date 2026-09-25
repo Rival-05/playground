@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Instrument_Serif } from "next/font/google";
 import Providers from "@/components/assets/Providers";
 import { Container } from "@/components/common/Container";
 import { seo } from "@/config/seo";
@@ -11,6 +11,12 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -57,7 +63,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <JsonLd

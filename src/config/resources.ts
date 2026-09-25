@@ -9,13 +9,6 @@ export type Resource = {
 
 export const resources: Resource[] = [
     {
-        title: "Striver SDE Sheet",
-        link: "https://takeuforward.org/prep-hub/strivers-180-master-dsa-patterns",
-        type: "dsa",
-        category: "dsa questions",
-        imageSrc: "/images/resources/striver_sde_sheet.png",
-    },
-    {
         title: "Bengaluru Startup Map",
         link: "https://www.bangalorestartupmap.com/",
         type: "map",
@@ -108,13 +101,6 @@ export const resources: Resource[] = [
         link: "https://visualgo.net/en",
         category: "visualize algorithms and data structures",
         imageSrc: "/images/resources/visualgo.png",
-    },
-    {
-        title: "NeetCode",
-        type: "dsa",
-        link: "https://neetcode.io/",
-        category: "solve neetcode 150 and you are good to go",
-        imageSrc: "/images/resources/neetcode.png",
     },
     {
         title: "System Design Primer",

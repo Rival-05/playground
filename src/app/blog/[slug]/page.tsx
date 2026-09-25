@@ -21,7 +21,7 @@ const articleClassName =
   "w-full space-y-8 pb-24 pt-10 sm:py-12 lg:py-16 lg:pb-16";
 const headerClassName = "space-y-6";
 const headingClassName =
-  "text-2xl font-medium tracking-tight text-foreground md:text-3xl";
+  "font-display text-4xl leading-[1.05] tracking-wide text-foreground sm:text-3xl md:text-4xl";
 const descriptionClassName = "text-base text-muted-foreground leading-relaxed";
 const metaClassName =
   "flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground";

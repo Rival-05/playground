@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 const cx = (...c: (string | undefined)[]) => c.filter(Boolean).join(" ");
 
 const headingBaseClassName =
-  "scroll-m-20 font-heading tracking-tight text-foreground";
+  "scroll-m-20 font-display tracking-wide text-2xl font-medium text-foreground";
 
 const bodyClassName = "text-base leading-7 text-muted-foreground";
 const linkClassName = "font-medium text-foreground";
@@ -102,7 +102,13 @@ export const mdxComponents = {
   ),
 
   a: ({ className, ...props }: ComponentPropsWithoutRef<"a">) => (
-    <a className={cx("link-underline", linkClassName, className)} {...props} />
+    <a
+      {...props}
+      className={cx("link-underline", linkClassName, className)}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-cuelume-hover="tick"
+    />
   ),
 
   ul: ({ className, ...props }: ComponentPropsWithoutRef<"ul">) => (

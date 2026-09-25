@@ -9,6 +9,24 @@ export type Book = {
 
 export const books: Book[] = [
     {
+        title: "System design by ByteByteGo",
+        author: "ByteByteGo",
+        link: "https://github.com/Rival-05/books",
+        bookType: "system design",
+    },
+    {
+        title: "System Design Interview : An Insider's Guide",
+        author: "Alex Xu",
+        link: "https://github.com/Rival-05/books",
+        bookType: "system design",
+    },
+    {
+        title: "Designing Data-Intensive Applications",
+        author: "Martin Kleppmann",
+        link: "https://github.com/Rival-05/books",
+        bookType: "system design",
+    },
+    {
         title: "6 easy pieces",
         author: "Richard P. Feynman",
         coverImage: "/images/books/6_easy_pieces.svg",
