@@ -6,6 +6,11 @@ export type PhotographyEntry = {
 
 export const photography: PhotographyEntry[] = [
     {
+        src: "/images/photography/pizza.jpeg",
+        alt: "Pizza Slice on a plate.",
+        caption: "Great Pizza at 4P's with great company :)"
+    },
+    {
         src: "/images/photography/cross_street.jpeg",
         alt: "A narrow tree-lined lane with yellow lines between white walls",
         caption: "A quiet crossing.",

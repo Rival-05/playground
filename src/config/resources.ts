@@ -9,6 +9,18 @@ export type Resource = {
 
 export const resources: Resource[] = [
     {
+        title: "Learn Git Branching",
+        link: "https://learngitbranching.js.org/",
+        type: "course",
+        category: "learn git",
+    },
+    {
+        title: "SQL",
+        link: "https://sqlbolt.com/",
+        type: "course",
+        category: "learn sql",
+    },
+    {
         title: "Bengaluru Startup Map",
         link: "https://www.bangalorestartupmap.com/",
         type: "map",

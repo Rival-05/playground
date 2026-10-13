@@ -1,0 +1,315 @@
+---
+title: "Strivers Sheet"
+date: "2026-10-13"
+description: "A personal note on the Striver sheet."
+coverImage: "/images/blog/strivers_sheet.png"
+---
+
+Before starting off with the sheet, I want to make sure that I am writing this for myself so that it can be easy for me to revise later on. Though I’ll try to explain it in a way that everyone can understand.
+
+## Linear scan
+
+### 1. Majority Element
+
+[LeetCode: Majority Element](https://leetcode.com/problems/majority-element/description/)
+
+Here, we are given an array of size `n` and we need to return an element that appears more than `floor(n/2)`. In other words, if the size of the array is `5`, then the majority element would be the one that appears more than `floor(5/2)`, which is `2` times.
+
+Also, the question guarantees that a majority element always exists, which means there cannot be two majority elements at the same time. For example, there cannot be an array like `[1, 2, 3, 2, 3, 1, 1, 2]` where both `1` and `2` occur `3` times.
+
+---
+
+### Approach 1: brute force
+
+This is the simplest approach, but also the slowest. We use two nested loops to calculate the frequency of each element. If, for any element, the frequency is greater than the floor value, we return it.
+
+```cpp
+int floor_val = nums.size() / 2;
+
+for (int i : nums) {
+    int freq = 0;
+    for (int j : nums) {
+        if (i == j) freq++;
+    }
+    if (freq > floor_val) return i;
+}
+```
+
+Time complexity: `O(n^2)`
+Space complexity: `O(1)`
+
+This works, but it is not efficient for large inputs.
+
+---
+
+### Approach 2: using a hash map
+
+Now we can improve things by keeping the count of every element in a hash map. Whenever we find that the frequency of an element becomes greater than the floor value, we return it.
+
+```cpp
+unordered_map<int, int> frequency;
+
+for (int i : nums) {
+    frequency[i]++;
+    if (frequency[i] > floor_val) return i;
+}
+```
+
+Time complexity: `O(n)` if we use `unordered_map`, and `O(n log n)` if we use `ordered_map`.
+Space complexity: `O(n)`
+
+This is much better than the brute-force method, but we can do even better in both time and space.
+
+---
+
+### Approach 3: Moore's Voting Algorithm
+
+As the question asks, we want a solution with linear time and `O(1)` extra space.
+
+So we are going to use [Moore's Voting Algorithm](https://www.geeksforgeeks.org/theory-of-computation/boyer-moore-majority-voting-algorithm/).
+
+The core idea is simple: cancel out one element with another. If we keep seeing different elements, we “remove” them in pairs until only the majority candidate remains.
+
+Let’s say the array is `[1, 2, 3, 3, 1, 1, 2, 1]`.
+
+We start with `element = 0` and `count = 0`. Then we iterate through the array.
+
+- If `count == 0`, we initialize `element` to the current number and set `count = 1`.
+- If the current number is the same as `element`, we increase the count.
+- Otherwise, we decrease the count.
+
+This is basically the idea of pairing different numbers together and removing them.
+
+```cpp
+int element = 0, count = 0;
+
+for (int i : nums) {
+    if (count == 0) {
+        element = i;
+        count++;
+    }
+    else if (element == i) {
+        count++;
+    }
+    else {
+        count--;
+    }
+}
+```
+
+This gives us the candidate majority element, but we still need to verify it by counting its frequency in the original array. The question guarantees that a majority element exists, so this candidate is valid.
+
+---
+
+### Dry run
+
+Suppose we have the array: `[1, 2, 3, 1, 1]`
+
+Let’s simulate it:
+
+- Iteration 1: `count = 1`, `element = 1`
+- Iteration 2: `count = 0`, `element = 1`
+- Iteration 3: `count = 1`, `element = 3`
+- Iteration 4: `count = 0`, `element = 3`
+- Iteration 5: `count = 1`, `element = 1`
+
+This means the last surviving candidate is `1`, and since the problem guarantees a majority element, it must be the correct answer.
+Time complexity: `O(n)`
+Space complexity: `O(1)`
+
+## The main idea is not to count everything, but to keep the strongest candidate alive by cancelling out opposites.
+
+### 2. Kadane's Algorithm
+
+[LeetCode: Maximum Subarray](https://leetcode.com/problems/maximum-subarray/description/)
+
+Now we are asked to find the maximum sum of any contiguous subarray. This is a classic linear scan problem, and the idea is to keep track of the best subarray ending at the current position.
+
+For example, in the array `[-2, 1, -3, 4, -1, 2, 1, -5, 4]`, the maximum sum is `6` from the subarray `[4, -1, 2, 1]`.
+
+The key observation is this: if the current subarray sum becomes negative, it is better to start fresh from the current element. We do not want to carry a bad prefix into the future.
+
+### Approach: Kadane's Algorithm
+
+We maintain two things:
+
+- `currentSum`: the maximum sum of a subarray ending at the current index
+- `maxSum`: the maximum sum seen so far
+
+At every step:
+
+- either continue the previous subarray
+- or start a new subarray from the current element
+
+```cpp
+int currentSum = 0, maxSum = INT_MIN;
+
+for (int i : nums) {
+    currentSum = max(currentSum + i, i);
+    maxSum = max(maxSum, currentSum);
+}
+
+return maxSum;
+```
+
+Why does this work?
+
+If `currentSum + nums[i]` is smaller than `nums[i]`, then the previous subarray is not helping. It is better to discard it and start from `nums[i]`.
+
+### Dry run
+
+Take `nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]`.
+
+- Start with `currentSum = -2`, `maxSum = -2`
+- `1` makes it better, so `currentSum = 1`
+- `-3` kills the momentum, so we start fresh at `-3`
+- `4` gives us `currentSum = 4`, `maxSum = 4`
+- Keeping going, we eventually reach the best subarray sum `6`
+
+Time complexity: `O(n)`
+Space complexity: `O(1)`
+
+This is the most useful pattern whenever we need the best contiguous segment. The idea is simple: keep the good part, drop the bad part.
+
+### 3. Majority Element II
+
+[LeetCode: Majority Element II](https://leetcode.com/problems/majority-element-ii/description/)
+
+This is the extended version of the majority element problem. Now we are given an array of size `n` and we need to return all elements that appear more than `floor(n / 3)` times.
+
+A very important observation is that there can be at most two such elements. Because if there were three elements appearing more than one-third of the time, their frequencies would overlap, which is impossible.
+
+So we need a method that can find at most two candidates in linear time and constant space.
+
+### Approach: Boyer-Moore Voting Algorithm for `n / 3`
+
+We maintain two candidates and their counts:
+
+- `candidate1`, `candidate2`
+- `count1`, `count2`
+
+Now we traverse the array:
+
+- If `count1 == 0`, replace `candidate1` with the current value and set `count1 = 1`.
+- Else if `candidate1 == current`, increase `count1`.
+- Else if `count2 == 0`, replace `candidate2` with the current value and set `count2 = 1`.
+- Else if `candidate2 == current`, increase `count2`.
+- Otherwise, decrement both `count1` and `count2`.
+
+This is the same idea as cancelling out different elements, but now we are cancelling in groups of two candidates instead of one.
+
+```cpp
+vector<int> majorityElement(vector<int>& nums) {
+    int candidate1 = 0, candidate2 = 0;
+    int count1 = 0, count2 = 0;
+
+    for (int x : nums) {
+        if (count1 == 0) {
+            candidate1 = x;
+            count1 = 1;
+        }
+        else if (candidate1 == x) {
+            count1++;
+        }
+        else if (count2 == 0) {
+            candidate2 = x;
+            count2 = 1;
+        }
+        else if (candidate2 == x) {
+            count2++;
+        }
+        else {
+            count1--;
+            count2--;
+        }
+    }
+
+    vector<int> res;
+    count1 = 0;
+    count2 = 0;
+
+    for (int x : nums) {
+        if (x == candidate1) count1++;
+        if (x == candidate2) count2++;
+    }
+
+    if (count1 > nums.size() / 3) res.push_back(candidate1);
+    if (count2 > nums.size() / 3 && candidate1 != candidate2) res.push_back(candidate2);
+
+    return res;
+}
+```
+
+### Why this works
+
+The whole idea is again based on cancellation.
+
+If a number is not a majority element, then it can be removed by pairing it with other different numbers. By the time we finish, only the real candidates remain.
+
+Then we do a final verification pass to check whether they actually appear more than `n / 3` times.
+
+Time complexity: `O(n)`
+Space complexity: `O(1)`
+
+This is one of the best examples of how a small observation can reduce the problem from a frequency-counting problem to a constant-space trick.
+
+### 4. Maximum Product Subarray
+
+[LeetCode: Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/description/)
+
+This is a little different from Kadane's algorithm because the product can become negative, and negative numbers can flip the sign of the product if we multiply by another negative number.
+
+So we are not just tracking the maximum sum, we also need to track the minimum product. Why? Because when a subarray product is very negative, multiplying it by another negative number can make it positive and huge.
+
+For example, in the array `[2, -3, 4]`, the best product is `24` from `[2, -3, 4]`.
+
+### Approach: Track both maximum and minimum products
+
+At every index, we maintain:
+
+- `maxProduct`: maximum product of a subarray ending at the current index
+- `minProduct`: minimum product of a subarray ending at the current index
+- `answer`: the best product seen so far
+
+For each element `nums[i]`:
+
+```cpp
+int maxProduct = nums[0], minProduct = nums[0], answer = nums[0];
+
+for (int i = 1; i < nums.size(); i++) {
+    if (nums[i] < 0) swap(maxProduct, minProduct);
+
+    maxProduct = max(nums[i], maxProduct * nums[i]);
+    minProduct = min(nums[i], minProduct * nums[i]);
+    answer = max(answer, maxProduct);
+}
+
+return answer;
+```
+
+### Why do we swap?
+
+Because when the current number is negative, the maximum product can become the minimum product from the previous step, and vice versa. This is the whole trick.
+
+So instead of thinking only in terms of a single running product, we keep both extremes:
+
+- the most positive product
+- the most negative product
+
+Then whichever one is more helpful after multiplying by the current number becomes the new candidate.
+
+### Dry run
+
+Take `nums = [2, -3, 4]`.
+
+- Start with `maxProduct = 2`, `minProduct = 2`, `answer = 2`
+- At `-3`, we swap because the number is negative
+- Now `maxProduct` and `minProduct` are updated based on the new sign
+- At `4`, product becomes positive and grows to `24`
+
+Time complexity: `O(n)`
+Space complexity: `O(1)`
+
+This is one of those problems where the challenge is not just the logic, but the sign handling. Once we understand that negative numbers can flip the best product, the pattern becomes very clear.
+
+Thanks for reading :)
